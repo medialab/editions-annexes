@@ -35,7 +35,7 @@
 			<button
 				id="arrow_left"
 				type="button"
-				class="z-3 col-start-1 row-start-2 flex h-full w-full items-center justify-center px-2 md:col-start-auto md:row-start-auto md:px-6"
+				class="arrows col-start-1 row-start-2 md:col-start-auto md:row-start-auto"
 				data-hover="Previous image"
 				onclick={() => prevImage(images.length)}
 			>
@@ -63,7 +63,7 @@
 			<button
 				id="arrow_right"
 				type="button"
-				class="z-3 col-start-2 row-start-2 flex h-full w-full items-center justify-center px-2 py-4 md:col-start-auto md:row-start-auto md:px-6 md:py-0"
+				class="arrows col-start-2 row-start-2 md:col-start-auto md:row-start-auto"
 				data-hover="Next image"
 				onclick={() => nextImage(images.length)}
 			>

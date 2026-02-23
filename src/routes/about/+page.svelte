@@ -3,6 +3,9 @@
 	import Footer from '$lib/components/footer.svelte';
 	import { page } from '$app/state';
 	import { asset } from '$app/paths';
+	import { cubicInOut } from 'svelte/easing';
+	import { fly } from 'svelte/transition';
+	import { copyText, restCursorText } from '$lib/stores';
 
 	const pageTitle = 'About | editions annexes';
 	const pageDescription =
@@ -24,23 +27,40 @@
 	<meta name="twitter:image" content={socialImageUrl} />
 </svelte:head>
 
-<Header></Header>
-<Footer></Footer>
-<main class="absolute z-5 flex h-dvh w-dvw items-center justify-center md:pointer-events-none">
+<main class="fixed z-[-10] flex h-dvh w-dvw items-center justify-center" id="about_text">
 	<div
-		class="flex h-dvh w-full flex-col items-center justify-start overflow-scroll bg-neutral-100 p-4 py-30 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
+		class="flex h-full w-full flex-col items-center justify-start overflow-scroll bg-neutral-100 p-4 py-30 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
 	>
-		<h1 class=" text-neutral-400">
-			éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des
-			circuits classiques de l’édition scientifique. Il ne prétend pas s’y substituer, mais propose
-			de la compléter, en élargissant l’éventail des formats éditoriaux grâce auxquels une recherche
-			peut se partager : modes d’emploi, exercices, protocoles, zine, matériau empirique brut,
-			poster, etc. éditions annexes propose en retour de s’interroger sur le rôle des formats dans
-			l’édition scientifique. L’idée directrice du projet est d’inverser le rapport d’importance
-			entre le texte d’une publication et son péritexte (notes de bas de page, illustrations et
-			figures, annexes), grâce à un travail d’édition et de design graphique adapté à chaque objet.
-			Enfin, ce mode de publication est rapide, peu onéreux et entièrement autogéré, permettant
-			ainsi de fabriquer des comptes rendus d’une recherche vivante, en train de se faire.
+		<h1
+			class="text-neutral-400"
+			in:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 0 }}
+			out:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 200 }}
+		>
+			<span
+				class="cursor-pointer text-neutral-500"
+				data-hover={$restCursorText}
+				onclick={() => copyText('annexes@medialab.com')}
+				onkeydown={() => copyText('annexes@medialab.com')}
+				role="button"
+				tabindex="0">Éditions annexes</span
+			>
+			est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques
+			de l’édition scientifique. Il ne prétend pas s’y substituer, mais propose de la compléter, en élargissant
+			l’éventail des formats éditoriaux grâce auxquels une recherche peut se partager : modes d’emploi,
+			exercices, protocoles, zine, matériau empirique brut, poster, etc.
+			<span
+				class="cursor-pointer text-neutral-500"
+				data-hover={$restCursorText}
+				onclick={() => copyText('annexes@medialab.com')}
+				onkeydown={() => copyText('annexes@medialab.com')}
+				role="button"
+				tabindex="0">Éditions annexes</span
+			> propose en retour de s’interroger sur le rôle des formats dans l’édition scientifique. L’idée
+			directrice du projet est d’inverser le rapport d’importance entre le texte d’une publication et
+			son péritexte (notes de bas de page, illustrations et figures, annexes), grâce à un travail d’édition
+			et de design graphique adapté à chaque objet. Enfin, ce mode de publication est rapide, peu onéreux
+			et entièrement autogéré, permettant ainsi de fabriquer des comptes rendus d’une recherche vivante,
+			en train de se faire.
 		</h1>
 	</div>
 </main>

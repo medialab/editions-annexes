@@ -14,6 +14,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"@paper-design/shaders": "^0.0.71",
 		"@thisux/sveltednd": "^0.0.20",
 		"canvas": "^3.2.1",
 		"pdf-viewer": "^0.8.1",

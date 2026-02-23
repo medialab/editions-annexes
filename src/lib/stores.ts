@@ -16,19 +16,25 @@ export const isCoverDragging = writable(false);
 export const DND_SOURCE_CONTAINER = 'canvas';
 export const DND_FOOTER_CONTAINER = 'footer-dropzone';
 export const isAboutOpen = writable(false);
+export const currentReaderPage = writable<number>(1);
+export const restCursorText = writable('<b>Editiones Annexes</b> is always looking for publications, click to get our email!')
 
-const coverModules = import.meta.glob<string>('$lib/media/editions/**/thumb.{jpg,jpeg,png}', {
+//Media management
+
+const canvasElementModules = import.meta.glob<string>('$lib/media/editions/**/canvasElements/*.{jpg,jpeg,png}', {
 	eager: true,
 	import: 'default'
 });
 
-const pageModules = import.meta.glob<string>('$lib/media/editions/**/page-*.{jpg,jpeg,png}', {
+const pageModules = import.meta.glob<string>('$lib/media/editions/**/pages/page-*.{jpg,jpeg,png}', {
+	eager: true,
 	import: 'default'
 });
 
 const galleryModules = import.meta.glob<string>(
 	'$lib/media/editions/**/images/*.{jpg,jpeg,png,svg}',
 	{
+		eager: true,
 		import: 'default'
 	}
 );
@@ -68,101 +74,88 @@ function normalizeEditionKey(value?: string | null): string {
 		.normalize('NFD')
 		.replace(/[\u0300-\u036f]/g, '')
 		.toLowerCase()
-		.replace(/[^\w]+/g, '-')
-		.replace(/-+/g, '-')
+		.replace(/[^a-z0-9]+/g, '-')
 		.replace(/^-|-$/g, '');
 }
 
-function getEditionAndFileFromKey(key: string): { edition: string; file: string } | null {
-	const parts = key.split('/');
-	const editionsIndex = parts.indexOf('editions');
-	if (editionsIndex === -1 || editionsIndex + 1 >= parts.length) return null;
-
-	return {
-		edition: normalizeEditionKey(parts[editionsIndex + 1]),
-		file: parts[parts.length - 1].toLowerCase()
-	};
+function getEditionFromAssetKey(key: string): string {
+	const match = key.match(/\/editions\/([^/]+)\//);
+	return normalizeEditionKey(match?.[1]);
 }
 
-const editionCoverIndex: Record<string, string> = {};
-for (const [key, url] of Object.entries(coverModules)) {
-	const parsed = getEditionAndFileFromKey(key);
-	if (!parsed) continue;
-	editionCoverIndex[parsed.edition] = url;
+function pushAsset(index: Record<string, string[]>, edition: string, url: string) {
+	if (!edition) return;
+	if (!index[edition]) {
+		index[edition] = [];
+	}
+	index[edition].push(url);
 }
 
-const editionPagesCache = new Map<string, Promise<string[]>>();
-const editionGalleryCache = new Map<string, Promise<string[]>>();
+const editionCanvasElementIndex: Record<string, string[]> = {};
+for (const [key, url] of Object.entries(canvasElementModules).sort(([keyA], [keyB]) =>
+	keyA.localeCompare(keyB)
+)) {
+	pushAsset(editionCanvasElementIndex, getEditionFromAssetKey(key), url);
+}
 
-export function getEditionCover(editionName?: string | null): string {
+const editionPagesIndex: Record<string, string[]> = {};
+const editionGalleryIndex: Record<string, string[]> = {};
+
+const pageEntries: Record<string, Array<{ page: number; url: string }>> = {};
+for (const [key, url] of Object.entries(pageModules)) {
+	const edition = getEditionFromAssetKey(key);
+	if (!edition) continue;
+
+	const file = key.split('/').pop()?.toLowerCase() ?? '';
+	const pageMatch = file.match(/^page-(\d+)\.(jpg|jpeg|png)$/);
+	if (!pageMatch) continue;
+
+	if (!pageEntries[edition]) {
+		pageEntries[edition] = [];
+	}
+	pageEntries[edition].push({ page: Number(pageMatch[1]), url });
+}
+
+for (const [edition, items] of Object.entries(pageEntries)) {
+	editionPagesIndex[edition] = items.sort((a, b) => a.page - b.page).map((item) => item.url);
+}
+
+for (const [key, url] of Object.entries(galleryModules).sort(([keyA], [keyB]) =>
+	keyA.localeCompare(keyB)
+)) {
+	pushAsset(editionGalleryIndex, getEditionFromAssetKey(key), url);
+}
+
+export function getEditionElements(editionName?: string | null): string[] {
 	const normalizedName = normalizeEditionKey(editionName);
-	return editionCoverIndex[normalizedName] ?? '';
+	return editionCanvasElementIndex[normalizedName] ?? [];
 }
 
 export async function getEditionPages(editionName?: string | null): Promise<string[]> {
 	const normalizedName = normalizeEditionKey(editionName);
-	if (!normalizedName) return [];
-
-	const cached = editionPagesCache.get(normalizedName);
-	if (cached) return cached;
-
-	const loaderPromise = (async () => {
-		const matchingPages = Object.entries(pageModules)
-			.map(([key, load]) => {
-				const parsed = getEditionAndFileFromKey(key);
-				if (!parsed || parsed.edition !== normalizedName) return null;
-				const pageMatch = parsed.file.match(/^page-(\d+)\.(jpg|jpeg|png)$/);
-				if (!pageMatch) return null;
-				return { page: Number(pageMatch[1]), load };
-			})
-			.filter((item): item is { page: number; load: () => Promise<string> } => item !== null)
-			.sort((a, b) => a.page - b.page);
-
-		return Promise.all(matchingPages.map((item) => item.load()));
-	})();
-
-	editionPagesCache.set(normalizedName, loaderPromise);
-
-	try {
-		return await loaderPromise;
-	} catch (error) {
-		editionPagesCache.delete(normalizedName);
-		throw error;
-	}
+	return editionPagesIndex[normalizedName] ?? [];
 }
 
 export async function getEditionGalleryImages(editionName?: string | null): Promise<string[]> {
 	const normalizedName = normalizeEditionKey(editionName);
-	if (!normalizedName) return [];
-
-	const cached = editionGalleryCache.get(normalizedName);
-	if (cached) return cached;
-
-	const loaderPromise = (async () => {
-		const matchingImages = Object.entries(galleryModules)
-			.filter(([key]) => {
-				const parsed = getEditionAndFileFromKey(key);
-				return parsed && parsed.edition === normalizedName;
-			})
-			.sort(([keyA], [keyB]) => keyA.localeCompare(keyB));
-
-		return Promise.all(matchingImages.map(([, load]) => load()));
-	})();
-
-	editionGalleryCache.set(normalizedName, loaderPromise);
-
-	try {
-		return await loaderPromise;
-	} catch (error) {
-		editionGalleryCache.delete(normalizedName);
-		throw error;
-	}
+	return editionGalleryIndex[normalizedName] ?? [];
 }
 
 export function openPanel(edition: Edition) {
-	console.log('edition dropped:', edition);
+	//console.log('edition dropped:', edition);
+	currentReaderPage.set(0);
 	currentPanel.set('book');
 	isFooterOpen.set(false);
 	goto(resolve(`/editions/${edition.name}`));
 	currentEdition.set(edition);
 }
+
+export const copyText = (t: string) => {
+	navigator.clipboard.writeText(t);
+	restCursorText.set(`<span style="color: #2E8B57"><b>${t}</b></span> copied <span style="color: #2E8B57"><b>✓</b></span>`);
+	setTimeout(() => {
+		restCursorText.set(
+			'<b>Editiones Annexes</b> is always looking for publications, click to get our email!'
+		);
+	}, 1200);
+};

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Menu from '$lib/components/menu.svelte';
 	import { page } from '$app/state';
-	import { getEditionCover } from '$lib/stores';
+	import { getEditionElements } from '$lib/stores';
 	let { data } = $props();
 
 	const pageTitle = $derived(`${data.correctEdition.name} | editions annexes`);

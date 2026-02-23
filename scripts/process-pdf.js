@@ -230,10 +230,35 @@ function clearGeneratedPages(targetDir) {
 
 	const files = fs.readdirSync(targetDir);
 	files.forEach((file) => {
-		if (/^page-\d+\.jpg$/i.test(file) || file.toLowerCase() === 'thumb.jpg') {
+		if (/^page-\d+\.jpg$/i.test(file) || file.toLowerCase() === 'cover.jpg') {
 			fs.rmSync(path.join(targetDir, file), { force: true });
 		}
 	});
+}
+
+function getEditionAssetDirs(slug) {
+	const targetDir = path.join(IMAGE_OUTPUT_DIR, slug);
+	return {
+		targetDir,
+		pagesDir: path.join(targetDir, 'pages'),
+		canvasElementsDir: path.join(targetDir, 'canvasElements'),
+		imagesDir: path.join(targetDir, 'images')
+	};
+}
+
+function ensureDirectory(directoryPath) {
+	if (!fs.existsSync(directoryPath)) {
+		fs.mkdirSync(directoryPath, { recursive: true });
+	}
+}
+
+function ensureEditionAssetDirectories(slug) {
+	const dirs = getEditionAssetDirs(slug);
+	ensureDirectory(dirs.targetDir);
+	ensureDirectory(dirs.pagesDir);
+	ensureDirectory(dirs.canvasElementsDir);
+	ensureDirectory(dirs.imagesDir);
+	return dirs;
 }
 
 function getFirstGeneratedPagePath(targetDir) {
@@ -254,34 +279,25 @@ function getFirstGeneratedPagePath(targetDir) {
 }
 
 function ensureThumbFromFirstPage(slug) {
-	const targetDir = path.join(IMAGE_OUTPUT_DIR, slug);
-	const firstPage = getFirstGeneratedPagePath(targetDir);
+	const { pagesDir, canvasElementsDir } = ensureEditionAssetDirectories(slug);
+	const firstPage = getFirstGeneratedPagePath(pagesDir);
 	if (!firstPage) return false;
 
-	const thumb = path.join(targetDir, 'thumb.jpg');
+	const thumb = path.join(canvasElementsDir, 'cover.jpg');
 	fs.copyFileSync(firstPage, thumb);
 	console.log(`Created thumb: ${thumb}`);
 	return true;
 }
 
 function generatePages(pdfPath, slug) {
-	const targetDir = path.join(IMAGE_OUTPUT_DIR, slug);
+	const { pagesDir } = ensureEditionAssetDirectories(slug);
 
-	console.log(`Processing: ${pdfPath} -> ${targetDir}`);
-
-	if (!fs.existsSync(targetDir)) {
-		fs.mkdirSync(targetDir, { recursive: true });
-	}
-
-	const imagesDir = path.join(targetDir, 'images');
-	if (!fs.existsSync(imagesDir)) {
-		fs.mkdirSync(imagesDir, { recursive: true });
-	}
+	console.log(`Processing: ${pdfPath} -> ${pagesDir}`);
 
 	// Split PDF into JPGs
 	try {
-		clearGeneratedPages(targetDir);
-		execFileSync('pdftocairo', ['-jpeg', pdfPath, path.join(targetDir, 'page')]);
+		clearGeneratedPages(pagesDir);
+		execFileSync('pdftocairo', ['-jpeg', pdfPath, path.join(pagesDir, 'page')]);
 		if (!ensureThumbFromFirstPage(slug)) {
 			throw new Error(`No generated page JPGs found for ${slug} after conversion.`);
 		}
@@ -336,6 +352,8 @@ function processPdf(pdfPath, slug, relativePdfPath) {
 }
 
 function ensureAssetsForPdf(pdfPath, slug) {
+	ensureEditionAssetDirectories(slug);
+
 	if (hasGeneratedPages(slug)) {
 		console.log(`[OK] ${pdfPath} already has page JPGs.`);
 		if (!hasThumb(slug)) {
@@ -352,16 +370,16 @@ function ensureAssetsForPdf(pdfPath, slug) {
 }
 
 function hasGeneratedPages(slug) {
-	const targetDir = path.join(IMAGE_OUTPUT_DIR, slug);
-	if (!fs.existsSync(targetDir)) return false;
+	const { pagesDir } = getEditionAssetDirs(slug);
+	if (!fs.existsSync(pagesDir)) return false;
 
-	const files = fs.readdirSync(targetDir);
+	const files = fs.readdirSync(pagesDir);
 	return files.some((file) => /^page-\d+\.jpg$/i.test(file));
 }
 
 function hasThumb(slug) {
-	const targetDir = path.join(IMAGE_OUTPUT_DIR, slug);
-	return fs.existsSync(path.join(targetDir, 'thumb.jpg'));
+	const { canvasElementsDir } = getEditionAssetDirs(slug);
+	return fs.existsSync(path.join(canvasElementsDir, 'cover.jpg'));
 }
 
 function getPdfFilesRecursive(rootDir, currentDir = rootDir) {

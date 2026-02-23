@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { currentPanel, getEditionDownloadInfo } from '$lib/stores';
+	import { currentPanel, getEditionDownloadInfo, isMobile } from '$lib/stores';
 	import Button from './button.svelte';
 	import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
@@ -19,9 +19,15 @@
 
 	let { currentEdition } = $props();
 
-	let gridColsNum = $state(2);
+	let gridColsNum = $state(6);
 	const homeHref = resolve('/');
 	const downloadInfo = $derived(getEditionDownloadInfo(currentEdition));
+
+	onMount(() => {
+		if ($isMobile) {
+			gridColsNum = 2;
+		}
+	});
 </script>
 
 <svelte:window onkeydown={(e) => e.key === 'Escape' && goto(homeHref)} />
@@ -87,6 +93,7 @@
 					url={downloadInfo.href}
 					download={downloadInfo.filename}
 				></Button>
+				<!--
 				{#if $currentPanel === 'book'}
 					<div class="flex w-full items-center justify-center">
 						<label
@@ -104,7 +111,7 @@
 							/>
 						</label>
 					</div>
-				{/if}
+				{/if}-->
 				<Button label="Share" icon={shareIcon} href={homeHref}></Button>
 			</footer>
 		</div>

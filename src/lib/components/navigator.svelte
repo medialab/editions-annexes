@@ -43,6 +43,7 @@
 			class:back={$currentPanel === 'home'}
 			aria-label={item.label}
 			title={item.label}
+			data-hover={item.label}
 		>
 			<img
 				src={item.icon}
