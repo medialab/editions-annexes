@@ -17,6 +17,7 @@ export const DND_SOURCE_CONTAINER = 'canvas';
 export const DND_FOOTER_CONTAINER = 'footer-dropzone';
 export const isAboutOpen = writable(false);
 export const currentReaderPage = writable<number>(1);
+export const restCursorText = writable('<b>Editiones Annexes</b> is always looking for publications, click to get our email!')
 
 //Media management
 
@@ -141,9 +142,20 @@ export async function getEditionGalleryImages(editionName?: string | null): Prom
 }
 
 export function openPanel(edition: Edition) {
-	console.log('edition dropped:', edition);
+	//console.log('edition dropped:', edition);
+	currentReaderPage.set(0);
 	currentPanel.set('book');
 	isFooterOpen.set(false);
 	goto(resolve(`/editions/${edition.name}`));
 	currentEdition.set(edition);
 }
+
+export const copyText = (t: string) => {
+	navigator.clipboard.writeText(t);
+	restCursorText.set(`<span style="color: #2E8B57"><b>${t}</b></span> copied <span style="color: #2E8B57"><b>✓</b></span>`);
+	setTimeout(() => {
+		restCursorText.set(
+			'<b>Editiones Annexes</b> is always looking for publications, click to get our email!'
+		);
+	}, 1200);
+};

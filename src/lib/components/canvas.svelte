@@ -565,15 +565,17 @@
 	}
 
 	function handleCoverPointerEnter(coverIndex: number, coverKey: string, edition: Edition) {
-		hoveredIndex = coverIndex;
-		hoveredCoverKey = coverKey;
-		hoveredEditionName = edition.name;
-		if (window.matchMedia('(min-width: 768px)').matches) {
-			updateCameraTargetFromInput();
-		}
-		currentEdition.set(edition);
-		refreshConnectionLines();
-		isTitleShowing.set(true);
+		setTimeout(() => {
+			hoveredIndex = coverIndex;
+			hoveredCoverKey = coverKey;
+			hoveredEditionName = edition.name;
+			if (window.matchMedia('(min-width: 768px)').matches) {
+				updateCameraTargetFromInput();
+			}
+			currentEdition.set(edition);
+			refreshConnectionLines();
+			isTitleShowing.set(true);
+		}, 150);
 	}
 
 	function handleCoverPointerLeave(coverIndex: number, coverKey: string) {
@@ -834,14 +836,14 @@
 		{@const editionElements = getEditionElements(edition.name)}
 		<!-- mobile version -->
 		<button
-			class="block h-auto w-[80%] rounded-md bg-white/90 drop-shadow-sm md:hidden"
+			class="block h-auto w-[80%] rounded-md drop-shadow-sm md:hidden"
 			type="button"
 			aria-label={edition.name}
 			onclick={() => openPanel(edition)}
 			style={`transform: rotate(${mobileRotations[index] ?? 0}deg);`}
 		>
 			<img
-				src={editionElements.find((e) => e.includes('cover')) ?? editionElements[0]}
+				src={editionElements.find((e) => e.toLowerCase().includes('cover')) ?? editionElements[0]}
 				alt={edition.name}
 				class="h-auto w-full object-contain"
 			/>

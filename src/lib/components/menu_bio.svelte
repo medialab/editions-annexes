@@ -29,8 +29,8 @@
 	}
 
 	function navigateToPage(pageNum: number) {
+		$currentReaderPage = pageNum;
 		currentPanel.set('reader');
-		currentReaderPage.set(pageNum);
 	}
 </script>
 
@@ -135,7 +135,7 @@
 	</div>
 	<div class="h-fit w-full md:h-full md:w-1/2" id="timone">
 		<div
-			class="grid h-full gap-2 overflow-y-scroll p-0 pb-8 md:h-full md:p-4 md:pb-0"
+			class="group grid h-full gap-2 overflow-y-scroll p-0 pb-8 transition-opacity duration-300 md:h-full md:p-4 md:pb-0"
 			style={`grid-template-columns: repeat(${gridCols}, minmax(0, 1fr));`}
 		>
 			{#await pagesPromise}
@@ -152,14 +152,16 @@
 							alt=""
 							loading="lazy"
 							decoding="async"
-							class="protected-image col-span-1 h-auto w-full bg-white object-contain transition-all duration-150 hover:rounded-xl"
+							class="protected-image col-span-1 h-auto w-full bg-white object-contain transition-all duration-200 group-hover:opacity-20 hover:cursor-help hover:opacity-100!"
 							draggable="false"
 							oncontextmenu={preventDefault}
 							ondragstart={preventDefault}
 							oncopy={preventDefault}
 							oncut={preventDefault}
 							onselectstart={preventDefault}
-							onclick={() => navigateToPage(i + 1)}
+							onclick={() => navigateToPage(i)}
+							role="button"
+							tabindex={1}
 						/>
 					{/each}
 				{/if}

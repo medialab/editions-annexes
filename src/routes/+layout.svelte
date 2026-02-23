@@ -46,9 +46,14 @@
 		{@render children()}
 	</main>
 {/key}
-<div class="fixed top-4 right-0 left-0 z-30 h-10 w-full p-2">
+
+<a
+	href="/"
+	onclick={() => goto('/')}
+	class="fixed top-4 right-0 left-0 z-30 h-10 w-full cursor-alias p-2"
+>
 	<img src={annexesIcon} alt="annexes logo" class="h-full place-self-center align-middle" />
-</div>
+</a>
 
 <div class="fixed right-0 bottom-4 left-0 z-30 flex h-10 w-full items-center justify-center p-2">
 	<a
@@ -63,15 +68,6 @@
 		{/if}
 	</a>
 </div>
-
-{#if $allEditions}
-	<div
-		class="relative z-10 h-dvh w-full overflow-y-scroll md:fixed md:m-0"
-		style="opacity: {page.url.pathname === '/about' ? 0 : 1};"
-	>
-		<Canvas editions={$allEditions}></Canvas>
-	</div>
-{/if}
 
 <!--<main class="absolute -z-10 flex h-dvh w-dvw items-center justify-center md:pointer-events-none">
 	{#if $isTitleShowing}

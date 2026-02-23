@@ -20,7 +20,6 @@
 
 	$effect(() => {
 		currentEdition?.name;
-		$currentReaderPage = 0;
 	});
 </script>
 
@@ -34,7 +33,7 @@
 		{@const visiblePages = pages.slice($currentReaderPage, $currentReaderPage + pagesPerView)}
 		<button
 			id="arrow_left"
-			class="z-3 col-start-1 row-start-2 flex h-fit w-full items-center justify-center bg-white px-2 py-4 disabled:text-neutral-200 md:col-start-auto md:row-start-auto md:bg-transparent md:px-6 md:py-0"
+			class="arrows col-start-1 row-start-2 md:col-start-auto md:row-start-auto"
 			onclick={prevPage}
 			disabled={$currentReaderPage <= 0}
 			data-hover="Previous page"
@@ -49,10 +48,10 @@
 			{#if pages.length === 0}
 				<p class=" text-neutral-500">No pages found.</p>
 			{:else}
-				<div class="grid h-full w-fit grid-cols-1 items-stretch md:grid-cols-2">
+				<div class="grid h-full min-h-0 w-fit grid-cols-1 items-stretch md:grid-cols-2">
 					{#each visiblePages as page}
 						<div
-							class="col-span-1 flex h-full w-fit items-center justify-center md:bg-transparent md:py-4"
+							class="col-span-1 flex h-full min-h-0 w-fit items-center justify-center md:bg-transparent md:py-4"
 						>
 							<img
 								src={page}
@@ -74,7 +73,7 @@
 		</div>
 		<button
 			id="arrow_right"
-			class="z-3 col-start-2 row-start-2 flex h-full w-full items-center justify-center bg-white px-2 disabled:text-neutral-200 md:col-start-auto md:row-start-auto md:bg-transparent md:px-6"
+			class="arrows col-start-2 row-start-2 md:col-start-auto md:row-start-auto"
 			onclick={() => nextPage(pages.length)}
 			disabled={$currentReaderPage + 1 >= pages.length}
 			data-hover="Next page"

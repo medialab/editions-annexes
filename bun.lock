@@ -1,10 +1,10 @@
 {
   "lockfileVersion": 1,
-  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "annexes-website",
       "dependencies": {
+        "@paper-design/shaders": "^0.0.71",
         "@thisux/sveltednd": "^0.0.20",
         "canvas": "^3.2.1",
         "pdf-viewer": "^0.8.1",
@@ -174,6 +174,8 @@
     "@napi-rs/canvas-win32-arm64-msvc": ["@napi-rs/canvas-win32-arm64-msvc@0.1.89", "", { "os": "win32", "cpu": "arm64" }, "sha512-DmyXa5lJHcjOsDC78BM3bnEECqbK3xASVMrKfvtT/7S7Z8NGQOugvu+L7b41V6cexCd34mBWgMOsjoEBceeB1Q=="],
 
     "@napi-rs/canvas-win32-x64-msvc": ["@napi-rs/canvas-win32-x64-msvc@0.1.89", "", { "os": "win32", "cpu": "x64" }, "sha512-WMej0LZrIqIncQcx0JHaMXlnAG7sncwJh7obs/GBgp0xF9qABjwoRwIooMWCZkSansapKGNUHhamY6qEnFN7gA=="],
+
+    "@paper-design/shaders": ["@paper-design/shaders@0.0.71", "", {}, "sha512-brCt05YxxyjBrhnE3l1wJJHcFXsM8aE4lmpd9TMQp+p0dMU3F+OWkJZL9m/RC1Tt7om5xr0Wg7d0HYm+b9NYZA=="],
 
     "@polka/url": ["@polka/url@1.0.0-next.29", "", {}, "sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww=="],
 
