@@ -19,6 +19,9 @@ export const isAboutOpen = writable(false);
 export const currentReaderPage = writable<number>(1);
 export const restCursorText = writable('<b>Editiones Annexes</b> is always looking for publications, click to get our email!')
 
+export const homeHref = resolve('/');
+export const aboutHref = resolve('/about');
+
 //Media management
 
 const canvasElementModules = import.meta.glob<string>('$lib/media/editions/**/canvasElements/*.{jpg,jpeg,png}', {

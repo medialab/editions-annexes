@@ -6,9 +6,7 @@
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-
-	const homeHref = resolve('/');
-	const aboutHref = resolve('/about');
+	import { homeHref, aboutHref } from '$lib/stores';
 </script>
 
 <header
@@ -27,7 +25,7 @@
 			<Button label="About" icon={infoIcon} href={aboutHref} onClick={() => goto(aboutHref)}
 			></Button>
 		{:else}
-			<Button href={homeHref} icon={homeIcon} onClick={() => goto(homeHref)}></Button>	
+			<Button href={homeHref} icon={homeIcon} onClick={() => goto(homeHref)}></Button>
 		{/if}
 	</div>
 	<div class="md:hidden">
