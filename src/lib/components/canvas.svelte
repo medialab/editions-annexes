@@ -599,6 +599,7 @@
 			);
 		}
 		isTitleShowing.set(false);
+		currentEdition.set(null);
 	}
 
 	let isReady = $state(false);
@@ -807,8 +808,8 @@
 				data-hover={cover.key.replace(' ', '').split('/').pop()}
 				use:registerCoverElement={cover.key}
 				onclick={() => openPanel(cover.edition)}
-				onpointerenter={() => handleCoverPointerEnter(index, cover.key, cover.edition)}
-				onpointerleave={() => handleCoverPointerLeave(index, cover.key)}
+				onmouseover={() => handleCoverPointerEnter(index, cover.key, cover.edition)}
+				onmouseout={() => handleCoverPointerLeave(index, cover.key)}
 				class="canvas-cover transition-[opacity,drop-shadow,transform, scale] absolute h-75 w-fit origin-center cursor-pointer overflow-clip rounded-md opacity-0 duration-250 ease-out hover:scale-105 hover:drop-shadow-sm focus-visible:opacity-100!"
 				style="left: {placementStyle ? placementStyle.x : 0}px; top: {placementStyle
 					? placementStyle.y
