@@ -50,21 +50,22 @@
 <a
 	href="/"
 	onclick={() => goto('/')}
-	class="fixed top-4 right-0 left-0 z-30 h-10 w-full cursor-alias p-2"
+	class="fixed top-4 left-1/2 z-30 mx-auto h-12 w-fit -translate-x-1/2 cursor-alias p-2"
 >
 	<img src={annexesIcon} alt="annexes logo" class="h-full place-self-center align-middle" />
 </a>
-
-<div class="fixed right-0 bottom-4 left-0 z-30 flex h-10 w-full items-center justify-center p-2">
+<div
+	class="fixed right-0 bottom-4 left-0 z-30 flex h-fit w-full items-center justify-center p-2 text-xl"
+>
 	<a
 		href="#"
 		onclick={() => goto(page.url.pathname === '/about' ? '/' : '/about')}
 		class="inline-flex w-fit bg-white p-2"
 	>
 		{#if page.url.pathname === '/about'}
-			<p>back to editiones annexes</p>
+			<p class="text-xl">back to editiones annexes</p>
 		{:else}
-			<p>c'est quoi annexes?</p>
+			<p class="text-xl">About Annexes?</p>
 		{/if}
 	</a>
 </div>

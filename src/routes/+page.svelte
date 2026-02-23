@@ -5,11 +5,21 @@
 	import { asset } from '$app/paths';
 	import { allEditions, restCursorText, copyText } from '$lib/stores';
 	import Canvas from '$lib/components/canvas.svelte';
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+
+	let isPageReady = $state(false);
 
 	const pageTitle = 'editions annexes';
 	const pageDescription =
 		'Projet editorial du medialab Sciences Po publie en editions annexes: formats de recherche, protocoles, zines et materiaux.';
 	const socialImageUrl = 'https://medialab.github.io/annexes-website/og_image.png';
+
+	onMount(() => {
+		setTimeout(() => {
+			isPageReady = true;
+		}, 400);
+	});
 </script>
 
 <svelte:head>
@@ -26,16 +36,29 @@
 	<meta name="twitter:image" content={socialImageUrl} />
 </svelte:head>
 
-{#if $allEditions}
-	<div
-		class="relative z-10 h-dvh w-full cursor-help overflow-y-scroll md:fixed md:m-0"
-		style="opacity: {page.url.pathname === '/about' ? 0 : 1};"
-		data-hover={$restCursorText}
-		onclick={() => copyText('annexes@medialab.com')}
-		onkeydown={() => copyText('annexes@medialab.com')}
-		role="button"
-		tabindex="0"
-	>
+<div
+	class="relative z-10 h-dvh w-full cursor-help overflow-y-scroll md:fixed md:m-0"
+	class:showing={isPageReady}
+	class:not-showing={!isPageReady}
+	data-hover={$restCursorText}
+	onclick={() => copyText('annexes@medialab.com')}
+	onkeydown={() => copyText('annexes@medialab.com')}
+	role="button"
+	tabindex="0"
+>
+	{#if $allEditions}
 		<Canvas editions={$allEditions}></Canvas>
-	</div>
-{/if}
+	{/if}
+</div>
+
+<style>
+	.showing {
+		transition: opacity 1s ease-in-out;
+		opacity: 1;
+	}
+
+	.not-showing {
+		opacity: 0;
+		transition: opacity 1s ease-in-out;
+	}
+</style>
