@@ -54,15 +54,17 @@
 >
 	<img src={annexesIcon} alt="annexes logo" class="h-full place-self-center align-middle" />
 </a>
+
+<!--
 <div
 	class="fixed right-0 bottom-4 left-0 z-30 flex h-fit w-full items-center justify-center p-2 text-xl"
 >
 	<a
 		href="#"
-		onclick={() => goto(page.url.pathname === '/about' ? homeHref : aboutHref)}
+		onclick={() => goto(page.url.pathname.includes('about') ? homeHref : aboutHref)}
 		class="inline-flex w-fit bg-white p-2"
 	>
-		{#if page.url.pathname === '/about'}
+		{#if page.url.pathname.includes('about')}
 			<p class="text-xl">back to editiones annexes</p>
 		{:else}
 			<p class="text-xl">About Annexes?</p>
@@ -70,7 +72,7 @@
 	</a>
 </div>
 
-<!--<main class="absolute -z-10 flex h-dvh w-dvw items-center justify-center md:pointer-events-none">
+<main class="absolute -z-10 flex h-dvh w-dvw items-center justify-center md:pointer-events-none">
 	{#if $isTitleShowing}
 		<div
 			class="pointer-events-none absolute z-0 flex h-dvh w-screen items-center justify-center opacity-20"

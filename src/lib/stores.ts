@@ -4,7 +4,7 @@ import { editions } from './data/datasource';
 import { goto } from '$app/navigation';
 import { asset, resolve } from '$app/paths';
 
-export const currentEdition = writable<Edition | null>(editions[0]);
+export const currentEdition = writable<Edition | null>(null);
 export const isMobile = writable(false);
 export const currentPanel = writable<MenuVariations | null>('book');
 export const allEditions = writable<Edition[]>(editions);
@@ -17,7 +17,7 @@ export const DND_SOURCE_CONTAINER = 'canvas';
 export const DND_FOOTER_CONTAINER = 'footer-dropzone';
 export const isAboutOpen = writable(false);
 export const currentReaderPage = writable<number>(1);
-export const restCursorText = writable('<b>Editiones Annexes</b> is always looking for publications, click to get our email!')
+export const restCursorText = writable('Click to get our emails!')
 
 export const homeHref = resolve('/');
 export const aboutHref = resolve('/about');
@@ -158,7 +158,7 @@ export const copyText = (t: string) => {
 	restCursorText.set(`<span style="color: #2E8B57"><b>${t}</b></span> copied <span style="color: #2E8B57"><b>✓</b></span>`);
 	setTimeout(() => {
 		restCursorText.set(
-			'<b>Editiones Annexes</b> is always looking for publications, click to get our email!'
+			'Click to get our emails!'
 		);
 	}, 1200);
 };

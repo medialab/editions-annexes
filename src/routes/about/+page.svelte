@@ -5,7 +5,8 @@
 	import { asset } from '$app/paths';
 	import { cubicInOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
-	import { copyText, restCursorText } from '$lib/stores';
+	import { copyText, homeHref, restCursorText } from '$lib/stores';
+	import { goto } from '$app/navigation';
 
 	const pageTitle = 'About | editions annexes';
 	const pageDescription =
@@ -29,7 +30,7 @@
 
 <main class="fixed z-[-10] flex h-dvh w-dvw items-center justify-center" id="about_text">
 	<div
-		class="flex h-full w-full flex-col items-center justify-start overflow-scroll bg-neutral-100 p-4 py-30 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
+		class="z-10 flex h-full w-full flex-col items-center justify-start overflow-scroll bg-neutral-100 p-4 py-30 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
 	>
 		<h1
 			class="text-neutral-400"
@@ -42,7 +43,7 @@
 				onclick={() => copyText('annexes@medialab.com')}
 				onkeydown={() => copyText('annexes@medialab.com')}
 				role="button"
-				tabindex="0">Éditions annexes</span
+				tabindex="0">éditions annexes</span
 			>
 			est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques
 			de l’édition scientifique. Il ne prétend pas s’y substituer, mais propose de la compléter, en élargissant
@@ -54,7 +55,7 @@
 				onclick={() => copyText('annexes@medialab.com')}
 				onkeydown={() => copyText('annexes@medialab.com')}
 				role="button"
-				tabindex="0">Éditions annexes</span
+				tabindex="0">éditions annexes</span
 			> propose en retour de s’interroger sur le rôle des formats dans l’édition scientifique. L’idée
 			directrice du projet est d’inverser le rapport d’importance entre le texte d’une publication et
 			son péritexte (notes de bas de page, illustrations et figures, annexes), grâce à un travail d’édition
@@ -63,4 +64,13 @@
 			en train de se faire.
 		</h1>
 	</div>
+
+	<button
+		class="absolute z-0 h-full w-full cursor-alias"
+		onclick={() => goto(homeHref)}
+		onkeydown={(e) => e.key === 'Escape' && goto(homeHref)}
+		role="button"
+		tabindex="0"
+	>
+	</button>
 </main>
