@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { getEditionElements, openPanel, isTitleShowing, currentEdition } from '$lib/stores';
 	import type { Edition } from '$lib/types';
-	import { cubicInOut } from 'svelte/easing';
+	import { cubicInOut, expoIn, quadIn, quadInOut } from 'svelte/easing';
 	import { draw, fly } from 'svelte/transition';
 	import Gradient from './gradient.svelte';
 
@@ -794,7 +794,7 @@
 							stroke="white"
 							stroke-width="10"
 							stroke-linecap="round"
-							transition:draw={{ duration: 1200, easing: cubicInOut }}
+							transition:draw={{ duration: 900, easing: quadIn }}
 						/>
 					{/if}
 				{/each}

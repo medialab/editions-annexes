@@ -131,7 +131,7 @@
 	}
 
 	p {
-		@apply w-fit font-sans text-sm font-normal tracking-[-0.03em] no-underline decoration-from-font;
+		@apply w-fit font-sans text-sm 2xl:text-lg font-normal tracking-[-0.03em] no-underline decoration-from-font;
 		text-underline-position: from-font;
 		text-decoration-skip-ink: none;
 	}
