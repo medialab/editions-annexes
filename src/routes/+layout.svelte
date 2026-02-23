@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import DeviceInfo from 'svelte-device-info';
-	import { currentEdition, isMobile, isTitleShowing } from '$lib/stores';
+	import { currentEdition, homeHref, isMobile, isTitleShowing, aboutHref } from '$lib/stores';
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { fly, slide } from 'svelte/transition';
@@ -48,8 +48,8 @@
 {/key}
 
 <a
-	href="/"
-	onclick={() => goto('/')}
+	href={homeHref}
+	onclick={() => goto(homeHref)}
 	class="fixed top-4 left-1/2 z-30 mx-auto h-12 w-fit -translate-x-1/2 cursor-alias p-2"
 >
 	<img src={annexesIcon} alt="annexes logo" class="h-full place-self-center align-middle" />
@@ -59,7 +59,7 @@
 >
 	<a
 		href="#"
-		onclick={() => goto(page.url.pathname === '/about' ? '/' : '/about')}
+		onclick={() => goto(page.url.pathname === '/about' ? homeHref : aboutHref)}
 		class="inline-flex w-fit bg-white p-2"
 	>
 		{#if page.url.pathname === '/about'}

@@ -84,8 +84,7 @@
 		class:scale-100={isVisible}
 		class:scale-95={!isVisible}
 		style={`transform: translate3d(${mouseX + 14}px, ${mouseY + 14}px, 0);`}
-		in:slide={{ duration: 200, easing: cubicInOut, axis: 'x', delay: 25 }}
-		out:slide={{ duration: 200, easing: cubicInOut, axis: 'x' }}
+		transition:slide={{ duration: 200, easing: cubicInOut, axis: 'x' }}
 	>
 		<p>
 			{@html hoverLabel}

@@ -41,8 +41,8 @@
 	class:showing={isPageReady}
 	class:not-showing={!isPageReady}
 	data-hover={$restCursorText}
-	onclick={() => copyText('annexes@medialab.com')}
-	onkeydown={() => copyText('annexes@medialab.com')}
+	onclick={() => copyText('axel.meunier@sciencespo.fr, donato.ricci@sciencespo.fr')}
+	onkeydown={() => copyText('axel.meunier@sciencespo.fr, donato.ricci@sciencespo.fr')}
 	role="button"
 	tabindex="0"
 >
