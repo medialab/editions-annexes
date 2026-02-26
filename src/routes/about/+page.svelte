@@ -28,7 +28,10 @@
 	<meta name="twitter:image" content={socialImageUrl} />
 </svelte:head>
 
-<main class="fixed z-[-10] flex h-dvh w-dvw items-center justify-center" id="about_text">
+<main
+	class="fixed -z-10 flex h-dvh h-screen w-dvw w-screen items-center justify-center"
+	id="about_text"
+>
 	<div
 		class="z-10 flex h-full w-full flex-col items-center justify-start overflow-scroll bg-neutral-100 p-4 py-30 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
 	>

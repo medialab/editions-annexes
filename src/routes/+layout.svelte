@@ -72,10 +72,10 @@
 	</a>
 </div>
 
-<main class="absolute -z-10 flex h-dvh w-dvw items-center justify-center md:pointer-events-none">
+<main class="absolute -z-10 flex h-screen h-dvh w-screen w-dvw items-center justify-center md:pointer-events-none">
 	{#if $isTitleShowing}
 		<div
-			class="pointer-events-none absolute z-0 flex h-dvh w-screen items-center justify-center opacity-20"
+			class="pointer-events-none absolute z-0 flex h-screen h-dvh w-screen items-center justify-center opacity-20"
 		>
 			<h1 transition:fly={{ y: 50, duration: 300, easing: cubicInOut }} class="text-6xl">
 				{$currentEdition?.name}
@@ -83,7 +83,7 @@
 		</div>
 	{:else}
 		<div
-			class="flex h-dvh w-full flex-col items-center justify-start overflow-scroll bg-neutral-100 p-4 py-30 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
+			class="flex h-screen h-dvh w-full flex-col items-center justify-start overflow-scroll bg-neutral-100 p-4 py-30 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
 		>
 			<h1 class="text-neutral-300" transition:fly={{ y: 50, duration: 300, easing: cubicInOut }}>
 				éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des

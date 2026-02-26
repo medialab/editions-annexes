@@ -33,7 +33,7 @@
 <svelte:window onkeydown={(e) => e.key === 'Escape' && goto(homeHref)} />
 
 <section
-	class="fixed z-10 flex h-dvh w-screen justify-start md:items-center md:justify-center md:p-12 2xl:p-24"
+	class="fixed z-10 flex h-dvh h-screen w-screen justify-start md:items-center md:justify-center md:p-12 2xl:p-24"
 	transition:slide={{ duration: 500, easing: cubicOut, axis: 'y' }}
 >
 	<div
@@ -119,7 +119,7 @@
 
 	<button
 		id="bg_drop"
-		class="fixed z-0 h-dvh w-dvw cursor-alias bg-[#F5F5F5] opacity-100 md:opacity-80"
+		class="fixed z-0 h-dvh h-screen w-dvw w-screen cursor-alias bg-[#F5F5F5] opacity-100 md:opacity-80"
 		onclick={() => goto(homeHref)}
 		aria-label="Close menu"
 		tabindex="0"

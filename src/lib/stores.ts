@@ -17,17 +17,20 @@ export const DND_SOURCE_CONTAINER = 'canvas';
 export const DND_FOOTER_CONTAINER = 'footer-dropzone';
 export const isAboutOpen = writable(false);
 export const currentReaderPage = writable<number>(1);
-export const restCursorText = writable('Click to get our emails!')
+export const restCursorText = writable('Click to get our emails!');
 
 export const homeHref = resolve('/');
 export const aboutHref = resolve('/about');
 
 //Media management
 
-const canvasElementModules = import.meta.glob<string>('$lib/media/editions/**/canvasElements/*.{jpg,jpeg,png}', {
-	eager: true,
-	import: 'default'
-});
+const canvasElementModules = import.meta.glob<string>(
+	'$lib/media/editions/**/canvasElements/*.{jpg,jpeg,png}',
+	{
+		eager: true,
+		import: 'default'
+	}
+);
 
 const pageModules = import.meta.glob<string>('$lib/media/editions/**/pages/page-*.{jpg,jpeg,png}', {
 	eager: true,
@@ -155,10 +158,10 @@ export function openPanel(edition: Edition) {
 
 export const copyText = (t: string) => {
 	navigator.clipboard.writeText(t);
-	restCursorText.set(`<span style="color: #2E8B57"><b>${t}</b></span> copied <span style="color: #2E8B57"><b>✓</b></span>`);
+	restCursorText.set(
+		`<span style="color: #2E8B57"><b>${t}</b></span> copied <span style="color: #2E8B57"><b>✓</b></span>`
+	);
 	setTimeout(() => {
-		restCursorText.set(
-			'Click to get our emails!'
-		);
+		restCursorText.set('Click to get our emails!');
 	}, 1200);
 };
