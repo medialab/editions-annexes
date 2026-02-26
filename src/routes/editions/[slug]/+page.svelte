@@ -10,8 +10,6 @@
 			data.correctEdition.subtitle ||
 			'Edition from editions annexes.'
 	);
-
-	const socialImageUrl = 'https://medialab.github.io/annexes-website/og_image.png';
 </script>
 
 <svelte:head>
@@ -23,11 +21,9 @@
 	<meta property="og:url" content={page.url.href} />
 	<meta name="twitter:title" content={pageTitle} />
 	<meta name="twitter:description" content={pageDescription} />
-	{#if socialImageUrl}
-		<meta property="og:image" content={socialImageUrl} />
-		<meta property="og:image:alt" content={pageTitle} />
-		<meta name="twitter:image" content={socialImageUrl} />
-	{/if}
+	<meta property="og:image" content="og_image.png" />
+	<meta name="twitter:image" content="og_image.png" />
+	<meta property="og:image:alt" content={pageTitle} />
 </svelte:head>
 
 <Menu currentEdition={data.correctEdition}></Menu>

@@ -35,11 +35,11 @@
 	<meta property="og:title" content={pageTitle} />
 	<meta property="og:description" content={pageDescription} />
 	<meta property="og:url" content={page.url.href} />
-	<meta property="og:image" content={socialImageUrl} />
+	<meta property="og:image" content="og_image.png" />
+	<meta name="twitter:image" content="og_image.png" />
 	<meta property="og:image:alt" content={pageTitle} />
 	<meta name="twitter:title" content={pageTitle} />
 	<meta name="twitter:description" content={pageDescription} />
-	<meta name="twitter:image" content={socialImageUrl} />
 </svelte:head>
 
 <div
