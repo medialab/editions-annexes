@@ -12,18 +12,4 @@
 	);
 </script>
 
-<svelte:head>
-	<title>{pageTitle}</title>
-	<meta name="description" content={pageDescription} />
-	<meta property="og:type" content="book" />
-	<meta property="og:title" content={pageTitle} />
-	<meta property="og:description" content={pageDescription} />
-	<meta property="og:url" content={page.url.href} />
-	<meta name="twitter:title" content={pageTitle} />
-	<meta name="twitter:description" content={pageDescription} />
-	<meta property="og:image" content="og_image.png" />
-	<meta name="twitter:image" content="og_image.png" />
-	<meta property="og:image:alt" content={pageTitle} />
-</svelte:head>
-
 <Menu currentEdition={data.correctEdition}></Menu>
