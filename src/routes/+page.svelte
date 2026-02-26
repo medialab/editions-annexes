@@ -14,11 +14,6 @@
 
 	let isPageReady = $state(false);
 
-	const pageTitle = 'editions annexes';
-	const pageDescription =
-		'Projet editorial du medialab Sciences Po publie en editions annexes: formats de recherche, protocoles, zines et materiaux.';
-	const socialImageUrl = 'https://medialab.github.io/annexes-website/og_image.png';
-
 	onMount(() => {
 		setTimeout(() => {
 			isPageReady = true;
@@ -27,20 +22,6 @@
 
 	$inspect('currentEdition:', $currentEdition);
 </script>
-
-<svelte:head>
-	<title>{pageTitle}</title>
-	<meta name="description" content={pageDescription} />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content={pageTitle} />
-	<meta property="og:description" content={pageDescription} />
-	<meta property="og:url" content={page.url.href} />
-	<meta property="og:image" content="og_image.png" />
-	<meta name="twitter:image" content="og_image.png" />
-	<meta property="og:image:alt" content={pageTitle} />
-	<meta name="twitter:title" content={pageTitle} />
-	<meta name="twitter:description" content={pageDescription} />
-</svelte:head>
 
 <div
 	class="relative z-10 h-dvh h-screen w-full cursor-help overflow-y-scroll md:fixed md:m-0"

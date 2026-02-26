@@ -31,10 +31,40 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<meta property="og:site_name" content="editions annexes" />
+	<title>{'editions annexes'}</title>
+	<meta
+		name="description"
+		content={'éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques de l’édition scientifique.'}
+	/>
+	<link rel="canonical" href={page.url.href} />
+
+	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
+	<meta property="og:url" content={page.url.href} />
+	<meta property="og:title" content={'editions annexes'} />
+	<meta
+		property="og:description"
+		content={'éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques de l’édition scientifique.'}
+	/>
+	<meta
+		property="og:image"
+		content="https://github.com/medialab/annexes-website/blob/2180d8a679142225ba8b90d61f424c510d24dcaf/static/og_image.png?raw=true"
+	/>
+	<meta property="og:site_name" content="editions annexes" />
 	<meta property="og:locale" content="fr_FR" />
+
+	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content={page.url.href} />
+	<meta name="twitter:title" content={'editions annexes'} />
+	<meta
+		name="twitter:description"
+		content={'éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques de l’édition scientifique.'}
+	/>
+	<meta
+		name="twitter:image"
+		content="https://github.com/medialab/annexes-website/blob/2180d8a679142225ba8b90d61f424c510d24dcaf/static/og_image.png?raw=true"
+	/>
 </svelte:head>
 
 {#key page.url.pathname}
