@@ -44,7 +44,7 @@
 		{#if currentEdition}
 			<div class="flex h-fit flex-col gap-6 overflow-visible md:h-full md:overflow-y-auto">
 				{#if hasValue(currentEdition.name) || hasValue(currentEdition.subtitle)}
-					<div class="hidden flex-col gap-0 md:flex">
+					<div class="hidden flex-col gap-2 md:flex">
 						{#if hasValue(currentEdition.name)}
 							<h1>{currentEdition.name}</h1>
 						{/if}

@@ -43,7 +43,7 @@
 </svelte:head>
 
 <div
-	class="relative z-10 h-dvh w-full cursor-help overflow-y-scroll md:fixed md:m-0"
+	class="relative z-10 h-dvh h-screen w-full cursor-help overflow-y-scroll md:fixed md:m-0"
 	class:showing={isPageReady}
 	class:not-showing={!isPageReady}
 	data-hover={$restCursorText}
@@ -58,7 +58,7 @@
 </div>
 
 <main
-	class="fixed z-[-10] flex h-dvh w-dvw items-center justify-center"
+	class="fixed -z-10 flex h-dvh h-screen w-dvw w-screen items-center justify-center"
 	id="about_text"
 	class:opacized={$currentEdition !== null}
 >

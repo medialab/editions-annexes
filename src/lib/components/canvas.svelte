@@ -4,7 +4,7 @@
 	import type { Edition } from '$lib/types';
 	import { cubicInOut, expoIn, quadIn, quadInOut } from 'svelte/easing';
 	import { draw, fly } from 'svelte/transition';
-	import Gradient from './gradient.svelte';
+	import Gradient from '$lib/components/gradient.svelte';
 
 	let { editions = [] } = $props<{ editions?: Edition[] }>();
 
@@ -76,6 +76,7 @@
 	const coverElements = new Map<string, HTMLButtonElement>();
 	let connectionRefreshFrame: number | null = null;
 	let cameraAnimationFrame: number | null = null;
+	let hoverTimeout: number | null = null;
 
 	const scenePadding = 100;
 	const mobileRotationMin = -6;
@@ -544,6 +545,10 @@
 	}
 
 	function resetMouse() {
+		if (hoverTimeout) {
+			clearTimeout(hoverTimeout);
+			hoverTimeout = null;
+		}
 		pointer = { x: 0, y: 0, active: false };
 		hoveredIndex = null;
 		hoveredCoverKey = null;
@@ -562,10 +567,16 @@
 					}
 				: line
 		);
+		isTitleShowing.set(false);
+		currentEdition.set(null);
 	}
 
 	function handleCoverPointerEnter(coverIndex: number, coverKey: string, edition: Edition) {
-		setTimeout(() => {
+		if (hoverTimeout) {
+			clearTimeout(hoverTimeout);
+			hoverTimeout = null;
+		}
+		hoverTimeout = window.setTimeout(() => {
 			hoveredIndex = coverIndex;
 			hoveredCoverKey = coverKey;
 			hoveredEditionName = edition.name;
@@ -575,31 +586,8 @@
 			currentEdition.set(edition);
 			refreshConnectionLines();
 			isTitleShowing.set(true);
+			hoverTimeout = null;
 		}, 150);
-	}
-
-	function handleCoverPointerLeave(coverIndex: number, coverKey: string) {
-		if (hoveredIndex === coverIndex) {
-			hoveredIndex = null;
-		}
-		if (hoveredCoverKey === coverKey) {
-			hoveredCoverKey = null;
-			hoveredEditionName = null;
-			if (pointer.active && window.matchMedia('(min-width: 768px)').matches) {
-				updateCameraTargetFromInput();
-			}
-			areConnectionLinesVisible = false;
-			connectionLines = connectionLines.map((line) =>
-				line.active
-					? {
-							...line,
-							active: false
-						}
-					: line
-			);
-		}
-		isTitleShowing.set(false);
-		currentEdition.set(null);
 	}
 
 	let isReady = $state(false);
@@ -770,7 +758,7 @@
 
 <section
 	bind:this={host}
-	class="group/canvas relative top-12 flex w-full flex-col items-center justify-center gap-20 overflow-y-scroll py-24 transition-opacity duration-500 md:top-0 md:h-dvh md:w-screen md:gap-0 md:overflow-hidden md:py-0"
+	class="group/canvas relative top-12 flex w-full flex-col items-center justify-center gap-20 overflow-y-scroll py-24 transition-opacity duration-500 md:top-0 md:h-dvh md:h-screen md:w-screen md:gap-0 md:overflow-hidden md:py-0"
 	class:opacity-0={!isReady}
 	class:pointer-events-none={!isReady}
 >
@@ -808,8 +796,8 @@
 				data-hover={cover.key.replace(' ', '').split('/').pop()}
 				use:registerCoverElement={cover.key}
 				onclick={() => openPanel(cover.edition)}
-				onmouseover={() => handleCoverPointerEnter(index, cover.key, cover.edition)}
-				onmouseout={() => handleCoverPointerLeave(index, cover.key)}
+				onpointerenter={() => handleCoverPointerEnter(index, cover.key, cover.edition)}
+				onpointerleave={() => resetMouse()}
 				class="canvas-cover transition-[opacity,drop-shadow,transform, scale] absolute h-75 w-fit origin-center cursor-pointer overflow-clip rounded-md opacity-0 duration-250 ease-out hover:scale-105 hover:drop-shadow-sm focus-visible:opacity-100!"
 				style="left: {placementStyle ? placementStyle.x : 0}px; top: {placementStyle
 					? placementStyle.y
@@ -851,7 +839,9 @@
 		</button>
 	{/each}
 	{#if $isTitleShowing}
-		<div class="pointer-events-none absolute z-10 flex h-dvh w-screen items-center justify-center">
+		<div
+			class="pointer-events-none absolute z-10 flex h-dvh h-screen w-screen items-center justify-center"
+		>
 			<h1
 				in:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 200 }}
 				out:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 0 }}
@@ -861,42 +851,9 @@
 			</h1>
 		</div>
 	{/if}
-	<main
-		class="fixed z-[-10] flex h-dvh w-dvw items-center justify-center md:pointer-events-none"
-		id="about_text"
-		style="transform: translate3d({getCameraOffsetFromCenter().x}px, {getCameraOffsetFromCenter()
-			.y}px, 0);"
-	></main>
+	<div
+		class="h-scree absolute top-0 left-0 -z-10 hidden h-dvh w-dvw w-screen bg-transparent md:block"
+		onpointerenter={() => resetMouse()}
+	></div>
 </section>
 <Gradient></Gradient>
-
-<!-- <main
-	class="fixed z-[-10] flex h-dvh w-dvw items-center justify-center md:pointer-events-none"
-	id="about_text"
-	style="transform: translate3d({getCameraOffsetFromCenter().x}px, {getCameraOffsetFromCenter()
-		.y}px, 0);"
->
-	{#if !$isTitleShowing}
-		<div
-			class="flex h-full w-full flex-col items-center justify-start overflow-scroll bg-neutral-100 p-4 py-30 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
-		>
-			<h1
-				class="text-neutral-300"
-				in:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 0 }}
-				out:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 200 }}
-			>
-				éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des
-				circuits classiques de l’édition scientifique. Il ne prétend pas s’y substituer, mais
-				propose de la compléter, en élargissant l’éventail des formats éditoriaux grâce auxquels une
-				recherche peut se partager : modes d’emploi, exercices, protocoles, zine, matériau empirique
-				brut, poster, etc. éditions annexes propose en retour de s’interroger sur le rôle des
-				formats dans l’édition scientifique. L’idée directrice du projet est d’inverser le rapport
-				d’importance entre le texte d’une publication et son péritexte (notes de bas de page,
-				illustrations et figures, annexes), grâce à un travail d’édition et de design graphique
-				adapté à chaque objet. Enfin, ce mode de publication est rapide, peu onéreux et entièrement
-				autogéré, permettant ainsi de fabriquer des comptes rendus d’une recherche vivante, en train
-				de se faire.
-			</h1>
-		</div>
-	{/if}
-</main>-->

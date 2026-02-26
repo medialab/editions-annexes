@@ -15,7 +15,7 @@
 	viewBox="0 0 100 100"
 	preserveAspectRatio="none"
 	xmlns="http://www.w3.org/2000/svg"
-	class="pointer-events-none fixed top-0 right-0 bottom-0 left-0 z-20 h-dvh w-dvw"
+	class="pointer-events-none fixed top-0 right-0 bottom-0 left-0 z-20 h-dvh h-screen w-dvw w-screen"
 >
 	<defs>
 		<linearGradient id="gTop" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="50">
