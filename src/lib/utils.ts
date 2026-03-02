@@ -39,7 +39,7 @@ export async function webShareApi(
 	} else {
 		shareData = {
 			title: `${title} - Annex of ${subtitle}`,
-			text: `\n\n${title} - Annex of ${subtitle}\n\nPart of éditions annexes\n\n${url}`,
+			text: `\n\n${title} - Annex of ${subtitle}\n\nPart of éditions annexes`,
 			url
 		};
 	}
