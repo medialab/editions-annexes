@@ -34,34 +34,6 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>{'editions annexes'}</title>
-	<meta
-		name="description"
-		content={'éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques de l’édition scientifique.'}
-	/>
-	<link rel="canonical" href="https://medialab.github.io/editions-annexes/" />
-
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://medialab.github.io/editions-annexes/" />
-	<meta property="og:title" content={'editions annexes'} />
-	<meta
-		property="og:description"
-		content={'éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques de l’édition scientifique.'}
-	/>
-	<meta property="og:image" content="https://medialab.github.io/editions-annexes/og_image.png" />
-	<meta property="og:site_name" content="editions annexes" />
-	<meta property="og:locale" content="fr_FR" />
-
-	<!-- Twitter -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:url" content="https://medialab.github.io/editions-annexes/" />
-	<meta name="twitter:title" content={'editions annexes'} />
-	<meta
-		name="twitter:description"
-		content={'éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques de l’édition scientifique.'}
-	/>
-	<meta name="twitter:image" content="https://medialab.github.io/editions-annexes/og_image.png" />
 </svelte:head>
 
 {#key page.url.pathname}
