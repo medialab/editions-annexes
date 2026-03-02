@@ -76,6 +76,7 @@
 />
 
 {#key hoverLabel}
+	{@const hoverLabelProcessed = hoverLabel.replaceAll('%20', '-')}
 	<div
 		aria-hidden="true"
 		class="pointer-events-none fixed top-0 left-0 z-120 hidden rounded-full border border-neutral-300 bg-white/95 px-3 py-1 text-nowrap text-neutral-700 shadow-[0_8px_24px_rgba(15,23,42,0.14)] backdrop-blur transition-[opacity,transform] duration-150 ease-out will-change-transform md:block"
@@ -87,7 +88,7 @@
 		transition:slide={{ duration: 200, easing: cubicInOut, axis: 'x' }}
 	>
 		<p>
-			{@html hoverLabel}
+			{@html hoverLabelProcessed}
 		</p>
 	</div>
 {/key}

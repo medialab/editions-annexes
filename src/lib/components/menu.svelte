@@ -33,7 +33,7 @@
 <svelte:window onkeydown={(e) => e.key === 'Escape' && goto(homeHref)} />
 
 <section
-	class="fixed z-10 flex h-dvh h-screen w-screen justify-start md:items-center md:justify-center md:p-12 2xl:p-24"
+	class="fixed z-10 flex h-screen w-screen justify-start supports-[height:100dvh]:h-dvh md:items-center md:justify-center md:p-12 2xl:p-24"
 	transition:slide={{ duration: 500, easing: cubicOut, axis: 'y' }}
 >
 	<div
@@ -64,7 +64,7 @@
 				></Button>
 			</header>
 			<div class="mb-4 flex h-fit w-full flex-none items-start justify-between md:hidden">
-				<div class="flex w-[80%] flex-col gap-0 text-wrap">
+				<div class="flex w-[80%] flex-col gap-2 text-wrap md:gap-0">
 					<h1>{currentEdition.name}</h1>
 					<p>{currentEdition.subtitle}</p>
 				</div>

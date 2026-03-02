@@ -791,9 +791,10 @@
 		{/if}
 		{#each canvasCovers as cover, index (cover.key)}
 			{@const placementStyle = getPlacementCoords(index)}
+			{@const hoverText = cover.key.replace(' ', '').split('/').pop()}
 			<button
 				type="button"
-				data-hover={cover.key.replace(' ', '').split('/').pop()}
+				data-hover={hoverText}
 				use:registerCoverElement={cover.key}
 				onclick={() => openPanel(cover.edition)}
 				onpointerenter={() => handleCoverPointerEnter(index, cover.key, cover.edition)}
@@ -843,8 +844,8 @@
 			class="pointer-events-none absolute z-10 flex h-dvh h-screen w-screen items-center justify-center"
 		>
 			<h1
-				in:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 200 }}
-				out:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 0 }}
+				in:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 50 }}
+				out:fly={{ y: -50, duration: 300, easing: cubicInOut, delay: 0 }}
 				class="bg-neutral-100 p-2 text-6xl"
 			>
 				{$currentEdition?.name}
