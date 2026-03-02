@@ -10,8 +10,7 @@ const config = {
 		prerender: {
 			entries: ['*'],
 			handleHttpError: 'warn'
-		},
-		trailingSlash: 'always'
+		}
 	}
 };
 
