@@ -56,7 +56,7 @@
 					</div>
 				{/if}
 				{#if hasValue(currentEdition.description)}
-					<p class="md:line-clamp-12">{currentEdition.description}</p>
+					<p>{currentEdition.description}</p>
 				{/if}
 				<div class="flex-col gap-2 md:flex">
 					{#if hasValue(currentEdition.name)}

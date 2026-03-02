@@ -13,10 +13,11 @@
 	import { hasValue, webShareApi } from '$lib/utils';
 
 	const navItems: { panel: MenuVariations; icon: string; label: string }[] = [
+		{ panel: 'share', icon: shareIcon, label: 'Share' },
 		{ panel: 'book', icon: bookIcon, label: 'Book' },
 		{ panel: 'gallery', icon: galleryIcon, label: 'Gallery' },
 		{ panel: 'reader', icon: readerIcon, label: 'Reader' },
-		{ panel: 'share', icon: shareIcon, label: 'Share' },
+
 		{ panel: 'home', icon: homeIcon, label: 'Home' }
 	];
 	const homeHref = resolve('/');
@@ -86,12 +87,23 @@
 		background-color: #e9f6ff;
 	}
 
-	.nav-button.home-button:hover {
-		background-color: #ffe5e5;
+	.nav-button.home-button {
+		background-color: #ffd9d9 !important;
+		opacity: 1 !important;
 	}
 
-	.nav-button.share-button:hover {
-		background-color: #e9f6ff;
+	.nav-button.home-button:hover {
+		background-color: #e69e9e !important;
+		opacity: 1 !important;
+	}
+
+	.nav-button.share-button {
+		background-color: #ffffff !important;
+	}
+
+	.nav-button.home-button > img:not(.active) {
+		opacity: 1;
+		filter: hue-rotate(120deg);
 	}
 
 	img:not(.active) {

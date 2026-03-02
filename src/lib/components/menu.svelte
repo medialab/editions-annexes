@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { currentPanel, getEditionDownloadInfo, isMobile } from '$lib/stores';
-	import { webShareApi, hasValue } from '$lib/utils';
+	import { webShareApi, hasValue, checkWebShareAPi } from '$lib/utils';
 	import Button from './button.svelte';
 	import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
@@ -22,6 +22,7 @@
 	let { currentEdition } = $props();
 
 	let gridColsNum = $state(6);
+	let showShareButton = $state(false);
 	const homeHref = resolve('/');
 	const downloadInfo = $derived(getEditionDownloadInfo(currentEdition));
 
@@ -29,13 +30,17 @@
 		if ($isMobile) {
 			gridColsNum = 2;
 		}
+
+		checkWebShareAPi().then((res) => {
+			showShareButton = res;
+		});
 	});
 </script>
 
 <svelte:window onkeydown={(e) => e.key === 'Escape' && goto(homeHref)} />
 
 <section
-	class="fixed z-10 flex h-screen w-screen justify-start supports-[height:100dvh]:h-dvh md:items-center md:justify-center md:p-12 2xl:p-24"
+	class="fixed z-10 flex h-screen w-screen justify-start supports-[height:100dvh]:h-dvh md:items-center md:justify-center md:py-12 md:pr-12 md:pl-5 2xl:p-24"
 	transition:slide={{ duration: 500, easing: cubicOut, axis: 'y' }}
 >
 	<div
@@ -107,7 +112,8 @@
 						download={downloadInfo.filename}
 					></Button>
 				{/if}
-				{#if hasValue(currentEdition?.name)}
+
+				{#if hasValue(currentEdition?.name) && showShareButton}
 					<Button
 						label="Share"
 						icon={shareIcon}

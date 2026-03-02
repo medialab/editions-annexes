@@ -60,3 +60,11 @@ export async function webShareApi(
 export function hasValue(value?: string | null): boolean {
 	return Boolean(value && value.trim().length > 0);
 }
+
+export async function checkWebShareAPi() {
+	if (!navigator.share) {
+		console.warn('Web Share API not supported on this browser');
+		return false;
+	}
+	return true;
+}
