@@ -46,10 +46,7 @@
 		property="og:description"
 		content={'éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques de l’édition scientifique.'}
 	/>
-	<meta
-		property="og:image"
-		content="https://github.com/medialab/annexes-website/blob/2180d8a679142225ba8b90d61f424c510d24dcaf/static/og_image.png?raw=true"
-	/>
+	<meta property="og:image" content="https://medialab.github.io/annexes-website/og_image.png" />
 	<meta property="og:site_name" content="editions annexes" />
 	<meta property="og:locale" content="fr_FR" />
 
@@ -61,10 +58,7 @@
 		name="twitter:description"
 		content={'éditions annexes est un projet éditorial qui publie des résultats de recherche en dehors des circuits classiques de l’édition scientifique.'}
 	/>
-	<meta
-		name="twitter:image"
-		content="https://github.com/medialab/annexes-website/blob/2180d8a679142225ba8b90d61f424c510d24dcaf/static/og_image.png?raw=true"
-	/>
+	<meta name="twitter:image" content="https://medialab.github.io/annexes-website/og_image.png" />
 </svelte:head>
 
 {#key page.url.pathname}
