@@ -18,6 +18,8 @@ export async function webShareApi(
 		return;
 	}
 
+	console.log('Sharing:', title, url, subtitle, imageUrl);
+
 	let shareData: ShareData;
 
 	if (imageUrl) {

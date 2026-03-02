@@ -1,6 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getEditionElements, openPanel, isTitleShowing, currentEdition } from '$lib/stores';
+	import {
+		getEditionElements,
+		openPanel,
+		isTitleShowing,
+		currentEdition,
+		isMobile
+	} from '$lib/stores';
 	import type { Edition } from '$lib/types';
 	import { cubicInOut, expoIn, quadIn, quadInOut } from 'svelte/easing';
 	import { draw, fly } from 'svelte/transition';
@@ -17,8 +23,6 @@
 			}))
 		)
 	);
-
-	$inspect('canvasCovers:', canvasCovers);
 
 	type Placement = {
 		x: number;
@@ -545,6 +549,7 @@
 	}
 
 	function resetMouse() {
+		if ($isMobile) return;
 		if (hoverTimeout) {
 			clearTimeout(hoverTimeout);
 			hoverTimeout = null;
@@ -572,6 +577,7 @@
 	}
 
 	function handleCoverPointerEnter(coverIndex: number, coverKey: string, edition: Edition) {
+		if ($isMobile) return;
 		if (hoverTimeout) {
 			clearTimeout(hoverTimeout);
 			hoverTimeout = null;
@@ -599,6 +605,7 @@
 	}
 
 	function getPlacementCoords(index: number) {
+		if ($isMobile) return;
 		const placement = placements[index];
 		const cover = canvasCovers[index];
 

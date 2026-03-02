@@ -21,8 +21,6 @@
 
 	let { currentEdition } = $props();
 
-	$inspect('currnetedition thumb:', currentEdition);
-
 	let gridColsNum = $state(6);
 	const homeHref = resolve('/');
 	const downloadInfo = $derived(getEditionDownloadInfo(currentEdition));
@@ -114,7 +112,7 @@
 						label="Share"
 						icon={shareIcon}
 						onClick={() =>
-							webShareApi(currentEdition.name, page.url.href, currentEdition.parentProject)}
+							webShareApi(currentEdition.name, page.url.href, currentEdition?.parentProject)}
 					></Button>
 				{/if}
 			</footer>

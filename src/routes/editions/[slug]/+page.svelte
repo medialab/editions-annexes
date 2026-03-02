@@ -1,9 +1,15 @@
 <script lang="ts">
 	import Menu from '$lib/components/menu.svelte';
 	import { page } from '$app/state';
-	import { getEditionElements } from '$lib/stores';
+	import { getEditionElements, currentEdition } from '$lib/stores';
 	import { hasValue } from '$lib/utils';
 	let { data } = $props();
+
+	$effect(() => {
+		if (data.correctEdition && page.url.pathname.includes('/editions')) {
+			$currentEdition = data.correctEdition;
+		}
+	});
 
 	const pageTitle = $derived(
 		hasValue(data.correctEdition?.name)

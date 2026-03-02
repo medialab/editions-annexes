@@ -20,7 +20,6 @@ export const currentReaderPage = writable<number>(1);
 export const restCursorText = writable('Click to get our emails!');
 
 export const homeHref = resolve('/');
-export const aboutHref = resolve('/about');
 
 //Media management
 
@@ -148,12 +147,11 @@ export async function getEditionGalleryImages(editionName?: string | null): Prom
 }
 
 export function openPanel(edition: Edition) {
-	//console.log('edition dropped:', edition);
+	currentEdition.set(edition);
 	currentReaderPage.set(0);
 	currentPanel.set('book');
 	isFooterOpen.set(false);
 	goto(resolve(`/editions/${edition.name}`));
-	currentEdition.set(edition);
 }
 
 export const copyText = (t: string) => {

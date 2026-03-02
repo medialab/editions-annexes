@@ -6,7 +6,7 @@
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { homeHref, aboutHref } from '$lib/stores';
+	import { homeHref } from '$lib/stores';
 </script>
 
 <header
@@ -19,20 +19,4 @@
 	>
 		<img src={annexesIcon} alt="annexes logo" class="h-7.5 w-auto" />
 	</a>
-
-	<div class="hidden md:block">
-		{#if page.url.pathname !== '/about'}
-			<Button label="About" icon={infoIcon} href={aboutHref} onClick={() => goto(aboutHref)}
-			></Button>
-		{:else}
-			<Button href={homeHref} icon={homeIcon} onClick={() => goto(homeHref)}></Button>
-		{/if}
-	</div>
-	<div class="md:hidden">
-		{#if page.url.pathname !== '/about'}
-			<Button icon={infoIcon} href={aboutHref} onClick={() => goto(aboutHref)}></Button>
-		{:else}
-			<Button href={homeHref} icon={homeIcon} onClick={() => goto(homeHref)}></Button>
-		{/if}
-	</div>
 </header>

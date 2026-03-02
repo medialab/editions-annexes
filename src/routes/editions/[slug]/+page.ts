@@ -8,6 +8,7 @@ export function entries() {
 
 export const load: PageLoad = ({ params }) => {
 	const correctEdition = editions.find((edition) => edition.name === params.slug);
+
 	if (!correctEdition) {
 		throw error(404, `Edition not found: ${params.slug}`);
 	}

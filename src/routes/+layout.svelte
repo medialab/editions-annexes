@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import DeviceInfo from 'svelte-device-info';
-	import { currentEdition, homeHref, isMobile, isTitleShowing, aboutHref } from '$lib/stores';
+	import { homeHref, isMobile } from '$lib/stores';
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { fly, slide } from 'svelte/transition';
