@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import DeviceInfo from 'svelte-device-info';
 	import { homeHref, isMobile } from '$lib/stores';
 	import '../app.css';
@@ -16,6 +17,8 @@
 	let { children } = $props();
 
 	onMount(() => {
+		if (!browser) return;
+
 		const updateMobileStatus = () => {
 			isMobile.set(DeviceInfo.isMobile || window.innerWidth < 768);
 		};

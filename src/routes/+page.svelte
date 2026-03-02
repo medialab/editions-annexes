@@ -1,4 +1,5 @@
 <script>
+	import { browser } from '$app/environment';
 	import Header from '$lib/components/header.svelte';
 	import Footer from '$lib/components/footer.svelte';
 	import { page } from '$app/state';
@@ -15,6 +16,7 @@
 	let isPageReady = $state(false);
 
 	onMount(() => {
+		if (!browser) return;
 		setTimeout(() => {
 			isPageReady = true;
 		}, 400);

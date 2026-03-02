@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import {
 		getEditionElements,
 		openPanel,
@@ -332,7 +333,7 @@
 	}
 
 	async function initializeScene() {
-		if (!host || typeof window === 'undefined') return;
+		if (!browser || !host) return;
 		connectionLines = buildConnectionLinePool();
 		areConnectionLinesVisible = false;
 
@@ -727,7 +728,7 @@
 	}
 
 	onMount(() => {
-		if (!host || typeof window === 'undefined') return;
+		if (!browser || !host) return;
 
 		let isDisposed = false;
 		void (async () => {

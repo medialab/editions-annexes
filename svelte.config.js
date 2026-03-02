@@ -6,7 +6,12 @@ const config = {
 		adapter: adapter(),
 		paths: {
 			base: process.env.BASE_PATH ?? ''
-		}
+		},
+		prerender: {
+			entries: ['*'],
+			handleHttpError: 'warn'
+		},
+		trailingSlash: 'always'
 	}
 };
 
