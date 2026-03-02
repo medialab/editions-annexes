@@ -44,7 +44,7 @@
 	class:opacized={$currentEdition !== null}
 >
 	<div
-		class="z-10 flex h-full w-full flex-col items-start justify-start gap-4 overflow-scroll bg-neutral-100 p-4 py-30 text-neutral-200 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
+		class="z-10 flex h-full w-full flex-col items-start justify-start gap-4 overflow-visible bg-neutral-100 p-4 py-30 text-neutral-200 md:h-fit md:w-4/5 md:justify-center md:overflow-hidden md:py-0"
 	>
 		<h1
 			class=""

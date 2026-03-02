@@ -80,7 +80,7 @@
 	}
 
 	.pill:hover {
-		@apply transition-all delay-75 duration-125;
+		@apply transition-all delay-75 duration-125 brightness-95 scale-98;
 	}
 }
 
@@ -131,9 +131,7 @@
 	}
 
 	p {
-		@apply w-fit font-sans text-sm font-normal tracking-[-0.03em] no-underline decoration-from-font 2xl:text-lg;
-		text-underline-position: from-font;
-		text-decoration-skip-ink: none;
+		@apply w-fit font-sans text-sm font-normal tracking-[-0.03em] decoration-from-font 2xl:text-lg;
 	}
 
 	b {
@@ -142,12 +140,7 @@
 
 	button,
 	a {
-		@apply inline-flex h-fit w-fit cursor-pointer border-none bg-transparent p-[2px] text-inherit no-underline;
-	}
-
-	a:hover,
-	button:hover {
-		@apply no-underline underline-offset-2 md:underline;
+		@apply inline-flex h-fit w-fit cursor-pointer border-none bg-transparent p-[2px] text-inherit;
 	}
 
 	*,

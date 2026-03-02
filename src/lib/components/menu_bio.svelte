@@ -42,7 +42,10 @@
 		id="biography-card"
 	>
 		{#if currentEdition}
-			<div class="flex h-fit flex-col gap-6 overflow-visible md:h-full md:overflow-y-auto">
+			<div
+				class="flex h-fit flex-col gap-6 overflow-visible md:h-full md:overflow-y-auto"
+				id="bio_list"
+			>
 				{#if hasValue(currentEdition.name) || hasValue(currentEdition.subtitle)}
 					<div class="hidden flex-col gap-2 md:flex">
 						{#if hasValue(currentEdition.name)}
@@ -85,7 +88,9 @@
 						<div class="grid grid-cols-[0.5fr_1fr] gap-2 md:grid-cols-[0.3fr_1fr]">
 							<p class="col-span-1 text-neutral-400 uppercase">download</p>
 							<a href={downloadInfo.href} download={downloadInfo.filename}>
-								<p class="col-span-1">{downloadInfo.filename ?? currentEdition.downloadHref}</p>
+								<p class="col-span-1 hover:underline hover:underline-offset-2">
+									{downloadInfo.filename ?? currentEdition.downloadHref}
+								</p>
 							</a>
 						</div>
 					{/if}
@@ -121,6 +126,8 @@
 									href={isExternalHref(currentEdition.parentUrl)
 										? currentEdition.parentUrl
 										: toAssetHref(currentEdition.parentUrl)}
+									id="bio_link"
+									class="hover:underline hover:underline-offset-2"
 								>
 									<p class="col-span-1">{currentEdition.parentProject}</p>
 								</a>
@@ -177,5 +184,10 @@
 		-webkit-user-drag: none;
 		user-select: none;
 		-webkit-user-select: none;
+	}
+
+	:global(.bio_link:hover > p) {
+		text-decoration: underline;
+		text-underline-offset: 2px;
 	}
 </style>
