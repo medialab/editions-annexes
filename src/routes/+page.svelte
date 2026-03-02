@@ -33,8 +33,12 @@
 	role="button"
 	tabindex="0"
 >
-	{#if $allEditions}
+	{#if $allEditions && $allEditions.length > 0}
 		<Canvas editions={$allEditions}></Canvas>
+	{:else}
+		<div class="flex h-full items-center justify-center">
+			<p class="text-neutral-400">missing data</p>
+		</div>
 	{/if}
 </div>
 

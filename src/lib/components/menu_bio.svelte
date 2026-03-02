@@ -8,17 +8,13 @@
 		currentPanel,
 		currentReaderPage
 	} from '$lib/stores';
-	import { isExternalHref, preventDefault } from '$lib/utils';
+	import { isExternalHref, preventDefault, hasValue } from '$lib/utils';
 	const pagesPromise = $derived(getEditionPages(currentEdition?.name ?? ''));
 	const downloadInfo = $derived(getEditionDownloadInfo(currentEdition));
 	const editorsText = $derived(formatList(currentEdition?.editors));
 	const designersText = $derived(formatList(currentEdition?.designers));
 	const contributorsText = $derived(formatList(currentEdition?.contributors));
 	const keywordsText = $derived(formatList(currentEdition?.keywords));
-
-	function hasValue(value?: string | null) {
-		return Boolean(value && value.trim().length > 0);
-	}
 
 	function formatList(values?: string[] | null) {
 		if (!values || values.length === 0) return '';
@@ -46,13 +42,16 @@
 				class="flex h-fit flex-col gap-6 overflow-visible md:h-full md:overflow-y-auto"
 				id="bio_list"
 			>
+				{#if !hasValue(currentEdition.name) && !hasValue(currentEdition.subtitle) && !hasValue(currentEdition.description)}
+					<p class="text-neutral-400">missing data</p>
+				{/if}
 				{#if hasValue(currentEdition.name) || hasValue(currentEdition.subtitle)}
 					<div class="hidden flex-col gap-2 md:flex">
 						{#if hasValue(currentEdition.name)}
 							<h1>{currentEdition.name}</h1>
 						{/if}
-						{#if hasValue(currentEdition.subtitle)}
-							<p>{currentEdition.subtitle}</p>
+						{#if hasValue(currentEdition.parentProject)}
+							<p>Annex of {currentEdition.parentProject}</p>
 						{/if}
 					</div>
 				{/if}

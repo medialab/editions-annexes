@@ -825,19 +825,21 @@
 	{#each editions as edition, index}
 		{@const editionElements = getEditionElements(edition.name)}
 		<!-- mobile version -->
-		<button
-			class="block h-auto w-[80%] rounded-md drop-shadow-sm md:hidden"
-			type="button"
-			aria-label={edition.name}
-			onclick={() => openPanel(edition)}
-			style={`transform: rotate(${mobileRotations[index] ?? 0}deg);`}
-		>
-			<img
-				src={editionElements.find((e) => e.toLowerCase().includes('cover')) ?? editionElements[0]}
-				alt={edition.name}
-				class="h-auto w-full object-contain"
-			/>
-		</button>
+		{#if editionElements.length > 0}
+			<button
+				class="block h-auto w-[80%] rounded-md drop-shadow-sm md:hidden"
+				type="button"
+				aria-label={edition.name || 'Untitled'}
+				onclick={() => openPanel(edition)}
+				style={`transform: rotate(${mobileRotations[index] ?? 0}deg);`}
+			>
+				<img
+					src={editionElements.find((e) => e.toLowerCase().includes('cover')) ?? editionElements[0]}
+					alt={edition.name || 'Untitled'}
+					class="h-auto w-full object-contain"
+				/>
+			</button>
+		{/if}
 	{/each}
 	{#if $isTitleShowing}
 		<div

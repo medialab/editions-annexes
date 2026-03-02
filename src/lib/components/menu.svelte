@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { currentPanel, getEditionDownloadInfo, isMobile } from '$lib/stores';
+	import { webShareApi, hasValue } from '$lib/utils';
 	import Button from './button.svelte';
 	import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
@@ -16,8 +17,11 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
+	import { page } from '$app/state';
 
 	let { currentEdition } = $props();
+
+	$inspect('currnetedition thumb:', currentEdition);
 
 	let gridColsNum = $state(6);
 	const homeHref = resolve('/');
@@ -47,11 +51,11 @@
 			class="flex h-full w-full flex-1 flex-col items-start justify-start gap-0 overflow-hidden border-0 pt-4 md:h-full md:items-center md:gap-4 md:rounded-2xl md:border md:border-neutral-200 md:bg-white md:p-4 md:pb-4"
 		>
 			<header class="hidden h-fit w-full items-center justify-between md:flex">
-				{#if currentEdition}
+				{#if currentEdition && hasValue(currentEdition.parentUrl)}
 					<Button
 						label={`Visit the original project page`}
 						icon={externalLinkIcon}
-						url={currentEdition?.parentUrl}
+						url={currentEdition.parentUrl}
 					></Button>
 				{/if}
 				<Button
@@ -65,16 +69,26 @@
 			</header>
 			<div class="mb-4 flex h-fit w-full flex-none items-start justify-between md:hidden">
 				<div class="flex w-[80%] flex-col gap-2 text-wrap md:gap-0">
-					<h1>{currentEdition.name}</h1>
-					<p>{currentEdition.subtitle}</p>
+					{#if hasValue(currentEdition?.name)}
+						<h1>{currentEdition.name}</h1>
+					{:else}
+						<h1 class="text-neutral-400">missing data</h1>
+					{/if}
+					{#if hasValue(currentEdition?.subtitle)}
+						<p>{currentEdition.subtitle}</p>
+					{:else}
+						<p class="text-neutral-400">missing data</p>
+					{/if}
 				</div>
-				<a
-					href={downloadInfo.href}
-					download={downloadInfo.filename}
-					class="place-items-center p-2 opacity-50"
-				>
-					<img src={downloadIcon} alt="Download" />
-				</a>
+				{#if downloadInfo.href}
+					<a
+						href={downloadInfo.href}
+						download={downloadInfo.filename}
+						class="place-items-center p-2 opacity-50"
+					>
+						<img src={downloadIcon} alt="Download" />
+					</a>
+				{/if}
 			</div>
 
 			<div class="h-full min-h-0 w-full flex-1">
@@ -87,32 +101,22 @@
 				{/if}
 			</div>
 			<footer class="hidden h-fit w-full items-center justify-between md:flex">
-				<Button
-					label="Download"
-					icon={downloadIcon}
-					url={downloadInfo.href}
-					download={downloadInfo.filename}
-				></Button>
-				<!--
-				{#if $currentPanel === 'book'}
-					<div class="flex w-full items-center justify-center">
-						<label
-							class="flex w-2/5 flex-row items-center justify-center gap-3 rounded-xl bg-neutral-100 px-4 py-2 text-nowrap"
-						>
-							<p>Zoom x {gridColsNum}</p>
-							<input
-								class="h-1.5 w-full appearance-none rounded-full bg-blue-600 px-4 outline-none [&::-moz-range-thumb]:h-[0.9rem] [&::-moz-range-thumb]:w-[0.9rem] [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-blue-700 [&::-moz-range-thumb]:bg-blue-400 [&::-moz-range-track]:h-1.5 [&::-moz-range-track]:rounded-full [&::-moz-range-track]:bg-blue-600 [&::-webkit-slider-thumb]:h-[0.9rem] [&::-webkit-slider-thumb]:w-[0.9rem] [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-blue-700 [&::-webkit-slider-thumb]:bg-blue-400"
-								type="range"
-								min="1"
-								max="10"
-								step="1"
-								bind:value={gridColsNum}
-								aria-label="Number of grid columns"
-							/>
-						</label>
-					</div>
-				{/if}-->
-				<Button label="Share" icon={shareIcon} href={homeHref}></Button>
+				{#if downloadInfo.href}
+					<Button
+						label="Download"
+						icon={downloadIcon}
+						url={downloadInfo.href}
+						download={downloadInfo.filename}
+					></Button>
+				{/if}
+				{#if hasValue(currentEdition?.name)}
+					<Button
+						label="Share"
+						icon={shareIcon}
+						onClick={() =>
+							webShareApi(currentEdition.name, page.url.href, currentEdition.parentProject)}
+					></Button>
+				{/if}
 			</footer>
 		</div>
 	</div>
