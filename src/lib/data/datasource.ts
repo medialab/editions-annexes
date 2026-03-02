@@ -34,8 +34,8 @@ export let editions: Edition[] = [
         id: '2024',
         name: 'Styles of Moderation',
         subtitle: 'Styles de Moderation',
-        isbn: '',
-        description: '.',
+        isbn: '978-2-9597067-0-7',
+        description: 'Between trouble, meaning-making, acceptance and rejection, users\' encounter with problematic online content often remains undocumented. Based on a series of workshops, this publication transcribes their voices and accounts for their Styles of Moderation.',
         publishingDate: '2024',
         coPublisher: 'editions annexes / medialab Sciences Po',
         coPublisherUrl: 'https://medialab.sciencespo.fr/',
@@ -45,15 +45,19 @@ export let editions: Edition[] = [
             'Valentine Crosset',
             'Donato Ricci'
         ],
-        designers: [],
-        contributors: [],
+        designers: [
+            'Kévin Zanin'
+        ],
+        contributors: [
+            'Clémence Seurat'
+        ],
         keywords: [
             'Moderation',
             'AI practices',
             'Research publication'
         ],
         parentProject: 'Styles of Moderation',
-        parentUrl: 'https://medialab.sciencespo.fr/productions/2024-styles-de-moderation-axel-meunier-valentine-crosset-donato-ricci/'
+        parentUrl: 'https://medialab.sciencespo.fr/activites/styles-de-moderation/'
     },
     {
         id: '2025',
