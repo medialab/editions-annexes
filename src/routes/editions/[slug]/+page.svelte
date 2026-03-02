@@ -32,12 +32,12 @@
 	<meta property="og:description" content={pageDescription} />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={page.url.href} />
-	<meta property="og:image" content="https://medialab.github.io/annexes-website/og_image.png" />
+	<meta property="og:image" content="https://medialab.github.io/editions-annexes/og_image.png" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:url" content={page.url.href} />
 	<meta name="twitter:title" content={pageTitle} />
 	<meta name="twitter:description" content={pageDescription} />
-	<meta name="twitter:image" content="https://medialab.github.io/annexes-website/og_image.png" />
+	<meta name="twitter:image" content="https://medialab.github.io/editions-annexes/og_image.png" />
 </svelte:head>
 
 {#if data.correctEdition}

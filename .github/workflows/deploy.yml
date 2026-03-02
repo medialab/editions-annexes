@@ -62,7 +62,7 @@ jobs:
       - name: Build
         run: bun run build
         env:
-          BASE_PATH: /annexes-website
+          BASE_PATH: /editions-annexes
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
