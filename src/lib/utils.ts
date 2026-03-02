@@ -32,7 +32,7 @@ export async function webShareApi(
 
 		shareData = {
 			title: `${title} - ${subtitle}`,
-			text: `\n\n${title} - ${subtitle}\n\nPart of éditions annexes\n\n${url}`,
+			text: `\n\n${title} - ${subtitle}\n\nPart of éditions annexes`,
 			url,
 			files: [file]
 		};

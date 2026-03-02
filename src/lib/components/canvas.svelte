@@ -806,7 +806,7 @@
 				onclick={() => openPanel(cover.edition)}
 				onpointerenter={() => handleCoverPointerEnter(index, cover.key, cover.edition)}
 				onpointerleave={() => resetMouse()}
-				class="canvas-cover transition-[opacity,drop-shadow,transform, scale] absolute h-75 w-fit origin-center cursor-pointer overflow-clip rounded-md opacity-0 duration-250 ease-out hover:scale-105 hover:drop-shadow-sm focus-visible:opacity-100!"
+				class="canvas-cover transition-[opacity,drop-shadow,transform, scale] absolute h-75 w-fit origin-center cursor-pointer overflow-clip rounded-md opacity-0 duration-250 ease-out hover:scale-105 hover:drop-shadow-sm focus-visible:opacity-100! md:scale-80 2xl:scale-100"
 				style="left: {placementStyle ? placementStyle.x : 0}px; top: {placementStyle
 					? placementStyle.y
 					: 0}px; transform: translate({placementStyle ? placementStyle.tx : 0}px, {placementStyle
