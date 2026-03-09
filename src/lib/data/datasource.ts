@@ -32,7 +32,7 @@ export let editions: Edition[] = [
     },
     {
         id: '2024',
-        name: 'Comment faire avec la parole problématique en ligne',
+        name: 'Styles of Moderation',
         subtitle: 'Styles de Moderation',
         isbn: '978-2-9597067-0-7',
         description: 'Between trouble, meaning-making, acceptance and rejection, users\' encounter with problematic online content often remains undocumented. Based on a series of workshops, this publication transcribes their voices and accounts for their Styles of Moderation.',
