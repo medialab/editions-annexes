@@ -63,8 +63,8 @@ export let editions: Edition[] = [
         parentUrl: 'https://medialab.sciencespo.fr/activites/styles-de-moderation/',
         pdfId: '1d57be9a-6bee-4e04-a8a6-40d3078aec77',
         pdfStatus: 'active',
-        downloadHref: 'pdfs/Comment faire avec la parole problématique.pdf',
-        pdfRelativePath: 'Comment faire avec la parole problématique.pdf',
+        downloadHref: 'pdfs/Comment faire avec la parole problématique en ligne.pdf',
+        pdfRelativePath: 'Comment faire avec la parole problématique en ligne.pdf',
         pdfChecksum: '517eecaab2e6af20574bf584f2099ec16b13ec981eb22b6137accdd6024e96a7'
     },
     {
