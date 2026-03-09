@@ -51,7 +51,7 @@
 		{/if}
 		<div
 			id="viewer"
-			class="flex h-full w-full flex-1 flex-col items-start justify-start gap-0 overflow-hidden border-0 pt-4 md:h-full md:items-center md:gap-4 md:rounded-2xl md:border md:border-neutral-200 md:bg-white md:p-4 md:pb-4"
+			class="flex h-full w-full flex-1 flex-col items-start justify-start gap-0 overflow-hidden border-0  md:h-full md:items-center md:gap-4 md:rounded-2xl md:border md:border-neutral-200 md:bg-white md:p-4 md:pb-4"
 		>
 			<header class="hidden h-fit w-full items-center justify-between md:flex">
 				{#if currentEdition && hasValue(currentEdition.parentUrl)}
