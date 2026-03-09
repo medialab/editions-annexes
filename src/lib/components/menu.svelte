@@ -71,7 +71,7 @@
 				></Button>
 			</header>
 			<div class="mb-4 flex h-fit w-full flex-none items-start justify-between md:hidden">
-				<div class="flex w-[80%] flex-col gap-2 text-wrap md:gap-0">
+				<div class="flex w-[90%] flex-col gap-2 text-wrap md:gap-0">
 					{#if hasValue(currentEdition?.name)}
 						<h1>{currentEdition.name}</h1>
 					{:else}
@@ -87,7 +87,7 @@
 					<a
 						href={downloadInfo.href}
 						download={downloadInfo.filename}
-						class="place-items-center p-2 opacity-50"
+						class="place-items-center md:p-2 p-0 opacity-50"
 					>
 						<img src={downloadIcon} alt="Download" />
 					</a>
