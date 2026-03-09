@@ -10,7 +10,6 @@ export let editions: Edition[] = [
         publishingDate: 'September 2025',
         coPublisher: 'editions annexes / medialab Sciences Po',
         coPublisherUrl: 'https://medialab.sciencespo.fr/',
-        downloadHref: 'pdfs/Artificial Inquiries.pdf',
         editors: [
             'Gabriel Alcaras',
             'Donato Ricci',
@@ -28,18 +27,22 @@ export let editions: Edition[] = [
             'participative methods'
         ],
         parentProject: 'Ecologies of LLM Practices',
-        parentUrl: 'https://medialab.sciencespo.fr/productions/2025-09-artificial-inquiries-gabriel-alcaras-donato-ricci-tommaso-prinetti-zoe-de-vries/'
+        parentUrl: 'https://medialab.sciencespo.fr/productions/2025-09-artificial-inquiries-gabriel-alcaras-donato-ricci-tommaso-prinetti-zoe-de-vries/',
+        pdfId: 'bcabb8dd-a992-464c-ab96-3c5338d85b30',
+        pdfStatus: 'active',
+        downloadHref: 'pdfs/Artificial Inquiries.pdf',
+        pdfRelativePath: 'Artificial Inquiries.pdf',
+        pdfChecksum: '6116d708acbf1fa879dc809b3ca4590ff9be4ec073eb4154873b95504a336278'
     },
     {
-        id: '2024',
         name: 'Styles of Moderation',
+        id: '2024',
         subtitle: 'Styles de Moderation',
         isbn: '978-2-9597067-0-7',
         description: 'Between trouble, meaning-making, acceptance and rejection, users\' encounter with problematic online content often remains undocumented. Based on a series of workshops, this publication transcribes their voices and accounts for their Styles of Moderation.',
         publishingDate: '2024',
         coPublisher: 'editions annexes / medialab Sciences Po',
         coPublisherUrl: 'https://medialab.sciencespo.fr/',
-        downloadHref: 'pdfs/Styles of Moderation.pdf',
         editors: [
             'Axel Meunier',
             'Valentine Crosset',
@@ -57,18 +60,22 @@ export let editions: Edition[] = [
             'Research publication'
         ],
         parentProject: 'Styles of Moderation',
-        parentUrl: 'https://medialab.sciencespo.fr/activites/styles-de-moderation/'
+        parentUrl: 'https://medialab.sciencespo.fr/activites/styles-de-moderation/',
+        pdfId: '1d57be9a-6bee-4e04-a8a6-40d3078aec77',
+        pdfStatus: 'active',
+        downloadHref: 'pdfs/Styles of Moderation.pdf',
+        pdfRelativePath: 'Styles of Moderation.pdf',
+        pdfChecksum: '517eecaab2e6af20574bf584f2099ec16b13ec981eb22b6137accdd6024e96a7'
     },
     {
-        id: '2025',
         name: 'Trajectories of Engagement',
+        id: '2025',
         subtitle: 'Trajectories of Engagement: Challenging the Materiality of Participatory Research',
         isbn: '978-2-9597067-2-1',
         description: 'Trajectories of engagement are ways people involve themselves in the world and in specific situations. This publication frames participation as a dynamic and situated process, and explores how forms of attachment to people, things and ideas evolve over time across social and professional contexts.',
         publishingDate: '2025',
         coPublisher: 'editions annexes / medialab Sciences Po',
         coPublisherUrl: 'https://medialab.sciencespo.fr/',
-        downloadHref: 'pdfs/Trajectories of Engagement.pdf',
         editors: [
             'Robin de Mourat',
             'Elie Petit',
@@ -90,6 +97,11 @@ export let editions: Edition[] = [
             'Co-design'
         ],
         parentProject: 'Trajectories of Engagement',
-        parentUrl: 'https://trajectories.sciencespo.fr/'
+        parentUrl: 'https://trajectories.sciencespo.fr/',
+        pdfId: '8c4ad959-00f4-43fc-ae91-463a6eed795c',
+        pdfStatus: 'active',
+        downloadHref: 'pdfs/Trajectories of Engagement.pdf',
+        pdfRelativePath: 'Trajectories of Engagement.pdf',
+        pdfChecksum: '19662005735e77ce7f4ee2b9c636ea40284abdbfa5354d5cf79e6afa48c44187'
     }
 ];

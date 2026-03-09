@@ -1,13 +1,13 @@
 import { writable } from 'svelte/store';
 import type { Edition, MenuVariations } from './types';
-import { editions } from './data/datasource';
+import { activeEditions } from './data/editions';
 import { goto } from '$app/navigation';
 import { asset, resolve } from '$app/paths';
 
 export const currentEdition = writable<Edition | null>(null);
 export const isMobile = writable(false);
 export const currentPanel = writable<MenuVariations | null>('book');
-export const allEditions = writable<Edition[]>(editions);
+export const allEditions = writable<Edition[]>(activeEditions);
 export let isFooterOpen = writable(false);
 export const hideFooter = writable(true);
 export const isFooterHovered = writable(false);

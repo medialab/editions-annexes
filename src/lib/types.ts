@@ -1,3 +1,5 @@
+export type PdfStatus = 'active' | 'archived-old-version';
+
 export type Edition = {
 	id: string;
 	name: string;
@@ -10,10 +12,14 @@ export type Edition = {
 	contributors: string[];
 	keywords: string[];
 	parentProject: string;
-	downloadHref: string;
+	downloadHref?: string;
 	coPublisher: string;
 	parentUrl: string;
 	coPublisherUrl: string;
+	pdfId: string;
+	pdfStatus: PdfStatus;
+	pdfRelativePath?: string;
+	pdfChecksum?: string;
 };
 
 export type DropItem =
