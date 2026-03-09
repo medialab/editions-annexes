@@ -35,7 +35,7 @@ export let editions: Edition[] = [
         pdfChecksum: '6116d708acbf1fa879dc809b3ca4590ff9be4ec073eb4154873b95504a336278'
     },
     {
-        name: 'Styles of Moderation',
+        name: 'Comment faire avec la parole problématique',
         id: '2024',
         subtitle: 'Styles de Moderation',
         isbn: '978-2-9597067-0-7',
