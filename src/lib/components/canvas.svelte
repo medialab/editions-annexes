@@ -856,7 +856,7 @@
 			<h1
 				in:fly={{ y: 50, duration: 300, easing: cubicInOut, delay: 50 }}
 				out:fly={{ y: -50, duration: 300, easing: cubicInOut, delay: 0 }}
-				class="bg-neutral-100 p-2 text-6xl"
+				class="bg-neutral-100 max-w-2/3 p-2 text-6xl text-wrap text-center"
 			>
 				{$currentEdition?.name}
 			</h1>

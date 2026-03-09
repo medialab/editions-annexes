@@ -288,7 +288,7 @@ function ensureThumbFromFirstPage(imageOutputDir, slug) {
 	const firstPage = getFirstGeneratedPagePath(pagesDir);
 	if (!firstPage) return false;
 
-	const thumb = path.join(canvasElementsDir, 'cover.jpg');
+	const thumb = path.join(canvasElementsDir, `${slug}_cover.jpg`);
 	fs.copyFileSync(firstPage, thumb);
 	console.log(`Created thumb: ${thumb}`);
 	return true;
