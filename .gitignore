@@ -33,3 +33,11 @@ pnpm-debug.log*
 
 # Lockfiles not used in this repo
 package-lock.json
+
+# Agent / AI tool artifacts
+.opencode/
+.agent/
+
+# IDEs
+.vscode/
+.idea/
