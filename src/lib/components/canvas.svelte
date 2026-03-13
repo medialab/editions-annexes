@@ -863,6 +863,7 @@
 		</div>
 	{/if}
 	<div
+		role="presentation"
 		class="h-scree absolute top-0 left-0 -z-10 hidden h-dvh w-dvw w-screen bg-transparent md:block"
 		onpointerenter={() => resetMouse()}
 	></div>
