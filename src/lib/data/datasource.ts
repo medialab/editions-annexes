@@ -103,5 +103,26 @@ export let editions: Edition[] = [
         downloadHref: 'pdfs/Trajectories of Engagement.pdf',
         pdfRelativePath: 'Trajectories of Engagement.pdf',
         pdfChecksum: '19662005735e77ce7f4ee2b9c636ea40284abdbfa5354d5cf79e6afa48c44187'
+    },
+    {
+        name: 'scarto',
+        id: '2026',
+        subtitle: 'scarto',
+        isbn: '',
+        description: 'converted from application/x-indesign to application/pdf Adobe InDesign 21.3 (Macintosh) / 2026-04-13T11:47:14+02:00',
+        publishingDate: '2026',
+        coPublisher: '',
+        coPublisherUrl: '',
+        editors: [],
+        designers: [],
+        contributors: [],
+        keywords: [],
+        parentProject: '',
+        parentUrl: '',
+        pdfId: 'a660878e-fc8a-4694-bb98-612517461bf2',
+        pdfStatus: 'active',
+        downloadHref: 'pdfs/scarto.pdf',
+        pdfRelativePath: 'scarto.pdf',
+        pdfChecksum: 'b7344c5dd4cf2343502003f9a744f33e2c91b6e4a15f9dfe40ac003c3efb9a60'
     }
 ];
