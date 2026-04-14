@@ -123,6 +123,6 @@ export let editions: Edition[] = [
         pdfStatus: 'active',
         downloadHref: 'pdfs/scarto.pdf',
         pdfRelativePath: 'scarto.pdf',
-        pdfChecksum: 'b7344c5dd4cf2343502003f9a744f33e2c91b6e4a15f9dfe40ac003c3efb9a60'
+        pdfChecksum: '8055f85696953e730786539a6b2812fa28cd35fd80b48197cf9ddd423f73799b'
     }
 ];
