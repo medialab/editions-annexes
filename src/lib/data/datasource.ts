@@ -114,9 +114,17 @@ export let editions: Edition[] = [
         coPublisher: '',
         coPublisherUrl: '',
         editors: [],
-        designers: ['Donato Ricci'],
+        designers: [
+            'Donato Ricci'
+        ],
         contributors: [],
-        keywords: ['LLM', 'diffusion model', 'design', 'representation', 'knowledge'],
+        keywords: [
+            'LLM',
+            'diffusion model',
+            'design',
+            'representation',
+            'knowledge'
+        ],
         parentProject: 'Ecologies of LLM Practices',
         parentUrl: 'https://ecologiesofllm.medialab.sciencespo.fr/',
         pdfId: 'a660878e-fc8a-4694-bb98-612517461bf2',
