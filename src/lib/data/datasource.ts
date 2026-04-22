@@ -24,7 +24,7 @@ export let editions: Edition[] = [
         ],
         keywords: [
             'Digital ethnography',
-            'participative methods'
+            'Participatory methods'
         ],
         parentProject: 'Ecologies of LLM Practices',
         parentUrl: 'https://medialab.sciencespo.fr/productions/2025-09-artificial-inquiries-gabriel-alcaras-donato-ricci-tommaso-prinetti-zoe-de-vries/',
@@ -55,9 +55,7 @@ export let editions: Edition[] = [
             'Clémence Seurat'
         ],
         keywords: [
-            'Moderation',
-            'AI practices',
-            'Research publication'
+            'Content Moderation',
         ],
         parentProject: 'Styles of Moderation',
         parentUrl: 'https://medialab.sciencespo.fr/activites/styles-de-moderation/',
@@ -107,7 +105,7 @@ export let editions: Edition[] = [
     {
         name: 'scarto',
         id: '2025',
-        subtitle: 'On Generative AI, Description, and Representation',
+        subtitle: 'On Generative AI, Observation, Description, and Representation',
         isbn: '',
         description: 'A poster-publication emerging from the Representação e Conhecimento course at the University of Aveiro, Scarto explores how generative AI transforms description into synthetic representation. Combining theoretical notes with visual prompt–image sequences, it follows an exercise where students progressively revise prompts and remove key words in order to test how LLMs and diffusion models reconstruct objects. The result is a reflection on scarto as leftover, gap, drift, and exclusion, and on the need for judgment when working with probabilistic image generation.',
         publishingDate: '2026',
@@ -120,10 +118,11 @@ export let editions: Edition[] = [
         contributors: [],
         keywords: [
             'LLM',
-            'diffusion model',
-            'design',
-            'representation',
-            'knowledge'
+            'Diffusion model',
+            'Design',
+            'Observation',
+            'Description',
+            'Representation'
         ],
         parentProject: 'Ecologies of LLM Practices',
         parentUrl: 'https://ecologiesofllm.medialab.sciencespo.fr/',
