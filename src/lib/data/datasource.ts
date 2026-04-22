@@ -127,6 +127,9 @@ export let editions: Edition[] = [
         parentProject: 'Ecologies of LLM Practices',
         parentUrl: 'https://ecologiesofllm.medialab.sciencespo.fr/',
         pdfId: 'a660878e-fc8a-4694-bb98-612517461bf2',
-        pdfStatus: 'archived-old-version'
+        pdfStatus: 'active',
+        downloadHref: 'pdfs/scarto.pdf',
+        pdfRelativePath: 'scarto.pdf',
+        pdfChecksum: 'da88a02581139a696872004bea311e49e2e5f978cb9f5419f77ff25bd0256afc'
     }
 ];
