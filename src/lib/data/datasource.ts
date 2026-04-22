@@ -55,7 +55,7 @@ export let editions: Edition[] = [
             'Clémence Seurat'
         ],
         keywords: [
-            'Content Moderation',
+            'Content Moderation'
         ],
         parentProject: 'Styles of Moderation',
         parentUrl: 'https://medialab.sciencespo.fr/activites/styles-de-moderation/',
