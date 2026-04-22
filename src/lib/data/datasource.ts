@@ -106,7 +106,7 @@ export let editions: Edition[] = [
         name: 'scarto',
         id: '2025',
         subtitle: 'On Generative AI, Observation, Description, and Representation',
-        isbn: '',
+        isbn: '978-2-9597067-3-8',
         description: 'A poster-publication emerging from the Representação e Conhecimento course at the University of Aveiro, Scarto explores how generative AI transforms description into synthetic representation. Combining theoretical notes with visual prompt–image sequences, it follows an exercise where students progressively revise prompts and remove key words in order to test how LLMs and diffusion models reconstruct objects. The result is a reflection on scarto as leftover, gap, drift, and exclusion, and on the need for judgment when working with probabilistic image generation.',
         publishingDate: '2026',
         coPublisher: '',
