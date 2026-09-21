@@ -4,7 +4,7 @@
 
 Website for éditions annexes — a publishing project at Sciences Po medialab.
 
-<img width="1624" height="1061" alt="image" src="https://github.com/user-attachments/assets/7bf73585-0cd2-4bc9-a721-8cb158f465cc" />
+<img width="5088" height="3344" alt="editions annexes" src="https://github.com/user-attachments/assets/1f9523d5-f070-4d15-91d4-19689b4af893" />
 
 ---
 
