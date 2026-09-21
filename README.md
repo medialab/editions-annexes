@@ -59,7 +59,8 @@ After the first deployment, you will find in the [media folder](https://github.c
 
 After the automatic setup, you can edit [the datasource](https://github.com/medialab/editions-annexes/blob/c398bb0044c467a76d181a520c3812cb45e0ef6b/src/lib/data/datasource.ts) to change the visible informations of each publication.
 
-After modifications, **commit changes** and **push** to the main branch.
+> [!IMPORTANT]
+>After modifications, **commit changes** and **push** to the main branch.
 
 ---
 
